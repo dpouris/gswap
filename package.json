@@ -1,6 +1,6 @@
 {
   "name": "@dpouris/gswap",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A library for swapping between images in a gallery",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
