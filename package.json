@@ -6,6 +6,8 @@
   "types": "./dist/main.d.ts",
   "files": [
     "./README.md",
+    "./index.d.ts",
+    "./index.js",
     "./dist"
   ],
   "directories": {
