@@ -8,7 +8,7 @@ var _GSwap_instances, _GSwap_currentImg, _GSwap_createGSwapElement, _GSwap_creat
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GSwap = void 0;
 class GSwap {
-    constructor(containerElem, images, options) {
+    constructor(containerElem, images, options = {}) {
         _GSwap_instances.add(this);
         _GSwap_currentImg.set(this, 0);
         _GSwap_createNavigation.set(this, () => {

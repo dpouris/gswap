@@ -10,7 +10,7 @@ export class GSwap {
   constructor(
     containerElem: HTMLDivElement,
     images: string[],
-    options: Options
+    options: Options = {}
   ) {
     this.containerElem = containerElem;
     this.images = images;
