@@ -65,7 +65,7 @@ export class GSwap {
       imgElement.src = image;
       imgElement.width = this.options.imgDimensions!.width;
       imgElement.height = this.options.imgDimensions!.height;
-      imgElement.style.transition = `all ${this.options.animationDuration}ms ease-out`;
+      imgElement.style.transition = `all ${this.options.animationDuration}ms ease-in-out`;
       return imgElement;
     });
   }

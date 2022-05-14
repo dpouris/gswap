@@ -1,1 +1,1 @@
-export { GSwap } from "./main";
+export { GSwap as GSwap } from "./main";

@@ -165,7 +165,7 @@ _GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSw
         imgElement.src = image;
         imgElement.width = this.options.imgDimensions.width;
         imgElement.height = this.options.imgDimensions.height;
-        imgElement.style.transition = `all ${this.options.animationDuration}ms ease-out`;
+        imgElement.style.transition = `all ${this.options.animationDuration}ms ease-in-out`;
         return imgElement;
     });
 }, _GSwap_appendElementsOnContainer = function _GSwap_appendElementsOnContainer() {
