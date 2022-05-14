@@ -130,7 +130,7 @@ OR
 
 You can bind the **next()** method to an onclick event like so.
 
-```
+```js
 const gallery = new GSwap(...);
 const nextBtn = document.getElementById('nextGalleryBtn')
 
