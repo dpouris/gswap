@@ -8,7 +8,7 @@
 
 To get started, in your project folder, run:
 
-```
+```bash
 npm i @dpouris/gswap
 ```
 
@@ -16,7 +16,7 @@ npm i @dpouris/gswap
 
 First, import the library and create a new gswap instance:
 
-```
+```js
 import { GSwap } from '@dpouris/gswap';
 
 ...
@@ -118,7 +118,7 @@ This will create a new instance of gswap and will place the gallery absolutely i
 Displays the next image in the gallery.
 You can call the **next()** method by calling it from the gallery instance like so.
 
-```
+```js
 const gallery = new GSwap(...);
 
 ...
@@ -151,7 +151,7 @@ Stacks the images in the gallery in case their position was altered.
 
 Can be called from the gallery instance like so.
 
-```
+```js
 const gallery = new GSwap(...);
 
 ...
