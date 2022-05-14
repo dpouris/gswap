@@ -2,6 +2,8 @@
 
 ### Create a gallery of images with ease.
 
+![img](./gswap.gif)
+
 ---
 
 To get started, in your project folder, run:
@@ -19,7 +21,7 @@ import { GSwap } from '@dpouris/gswap';
 
 ...
 
-const = document.getElementById("gallery")
+const galleryContainer = document.getElementById("gallery")
 
 const gswap = new GSwap({
   containerElem: galleryContainer,
