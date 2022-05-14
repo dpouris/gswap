@@ -16,11 +16,11 @@ class GSwap {
             nav.classList.add("gallery-swap-nav");
             const navLeft = document.createElement("button");
             navLeft.onclick = this.prev;
-            navLeft.innerHTML = "&rarr;";
+            navLeft.innerHTML = "&larr;";
             navLeft.classList.add("gallery-swap-nav-left");
             const navRight = document.createElement("button");
             navRight.onclick = this.next;
-            navRight.innerHTML = "&larr;";
+            navRight.innerHTML = "&rarr;";
             navRight.classList.add("gallery-swap-nav-right");
             if (this.options.navigation === "forwardOnly") {
                 nav.appendChild(navRight);
@@ -121,9 +121,7 @@ class GSwap {
         this.containerElem = containerElem;
         this.images = images;
         this.options = options;
-        this.options.imgDimensions = this.options
-            .imgDimensions.hasOwnProperty("height")
-            .hasOwnProperty("width")
+        this.options.imgDimensions = this.options.imgDimensions
             ? this.options.imgDimensions
             : { width: 300, height: 300 };
         this.options.direction = this.options.direction;

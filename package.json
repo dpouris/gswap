@@ -16,8 +16,5 @@
   },
   "keywords": [],
   "author": "dpouris",
-  "license": "ISC",
-  "dependencies": {
-    "@dpouris/gswap": "^0.0.3"
-  }
+  "license": "ISC"
 }
