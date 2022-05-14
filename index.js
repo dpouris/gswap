@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GSwap = void 0;
-var main_1 = require("./src/main");
+var main_1 = require("./dist/src/main");
 Object.defineProperty(exports, "GSwap", {
   enumerable: true,
   get: function () {
