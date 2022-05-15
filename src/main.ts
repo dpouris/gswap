@@ -1,9 +1,9 @@
-import type { Options } from "../types/GallerySwapTypes";
+import type { Options, GallerySwap } from "../@types/GallerySwapTypes";
 
-export class GSwap {
-  containerElem: HTMLDivElement;
-  images: string[];
-  options: Options;
+export class GSwap implements GallerySwap {
+  containerElem;
+  images;
+  options;
   #currentImg: number = 0;
 
   constructor(
@@ -52,6 +52,7 @@ export class GSwap {
     imageContainer.style.height = this.options.imgDimensions!.height + "px";
     imageContainer.style.width = this.options.imgDimensions!.width + "px";
     imageContainer.style.position = "relative";
+
     // imageContainer.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
     // imageContainer.style.animation = this.options.animation;
     // imageContainer.style.animationDuration = this.options.animationDuration;
@@ -75,6 +76,12 @@ export class GSwap {
       imgElement.width = this.options.imgDimensions!.width;
       imgElement.height = this.options.imgDimensions!.height;
       imgElement.style.transition = `all ${this.options.animationDuration}ms ease-in-out`;
+
+      // Optional image beautification
+      if (this.options.styled) {
+        imgElement.style.boxShadow = "rgb(0 0 0 / 30%) -6px 4px 6px 0px";
+        imgElement.style.borderRadius = "0.2em";
+      }
       return imgElement;
     });
   }

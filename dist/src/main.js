@@ -171,6 +171,11 @@ _GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSw
         imgElement.width = this.options.imgDimensions.width;
         imgElement.height = this.options.imgDimensions.height;
         imgElement.style.transition = `all ${this.options.animationDuration}ms ease-in-out`;
+        // Optional image beautification
+        if (this.options.styled) {
+            imgElement.style.boxShadow = "rgb(0 0 0 / 30%) -6px 4px 6px 0px";
+            imgElement.style.borderRadius = "0.2em";
+        }
         return imgElement;
     });
 }, _GSwap_appendElementsOnMainContainer = function _GSwap_appendElementsOnMainContainer() {

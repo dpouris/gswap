@@ -98,6 +98,10 @@ This will create a new instance of gswap and will place the gallery absolutely i
 
     The direction of the gallery. # top || bottom
 
+## styled (_boolean_)
+
+    If true the images will have a nice box shadow and slightly rounded corners. # true || false
+
 ## imgDimensions (_object_ : {height : number, width: number})
 
     Takes in an object that contains the keys of width and height that will be applied as the dimensions of the images. # { height: 300, width: 300 }

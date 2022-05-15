@@ -1,5 +1,11 @@
 export interface GallerySwap {
-  container: HTMLDivElement;
+  containerElem: HTMLDivElement;
+  images: string[];
+  options: Options;
+  stackImages(): void;
+  stackImages: () => void;
+  next: () => void;
+  prev: () => void;
 }
 
 export type Options = {
@@ -8,6 +14,7 @@ export type Options = {
   navigation?: boolean | "forwardOnly" | "backOnly";
   repeat?: boolean;
   direction?: "left" | "right" | "top" | "bottom";
+  styled?: boolean;
   imgDimensions?: {
     height: number;
     width: number;
