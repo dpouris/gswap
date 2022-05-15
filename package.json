@@ -6,7 +6,6 @@
   "types": "dist/src/main.d.ts",
   "files": [
     "README.md",
-    "gswap.gif",
     "dist/"
   ],
   "directories": {
