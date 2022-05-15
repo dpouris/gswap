@@ -6,7 +6,6 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 };
 var _GSwap_instances, _GSwap_currentImg, _GSwap_creatImageContainerElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnMainContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findPrevActiveElem, _GSwap_findNextActiveElement;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GSwap = void 0;
 class GSwap {
     constructor(containerElem, images, options = {}) {
         _GSwap_instances.add(this);
@@ -152,7 +151,7 @@ class GSwap {
         this.stackImages();
     }
 }
-exports.GSwap = GSwap;
+exports.default = GSwap;
 _GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findPrevActiveElem = new WeakMap(), _GSwap_findNextActiveElement = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_creatImageContainerElement = function _GSwap_creatImageContainerElement() {
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("gallery-swap");
