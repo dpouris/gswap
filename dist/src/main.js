@@ -166,12 +166,12 @@ class GSwap {
             }
             if (index > __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
                 for (let i = 0; i < index - __classPrivateFieldGet(this, _GSwap_currentImg, "f"); i++) {
-                    this.next();
+                    __classPrivateFieldGet(this, _GSwap_shiftImagesToTheRight, "f").call(this);
                 }
                 return;
             }
             for (let i = 0; i < __classPrivateFieldGet(this, _GSwap_currentImg, "f") - index; i++) {
-                this.prev();
+                __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
             }
         };
         this.images = images;
