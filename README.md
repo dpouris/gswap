@@ -2,7 +2,17 @@
 
 ### Create a gallery of images with ease.
 
-![img](./gswap.gif)
+![img](./images/gswap.gif)
+
+<h3 style="text-align:center;text-decoration:underline">
+  Working:
+</h3>
+<div style="display:flex; gap:1rem; justify-content:center">
+  <img alt="Typescript ready" src="./images/typescript-logo.svg" width="30">
+
+  <img alt="Javascript Ready" src="./images/javascript-logo.svg" width="30">
+
+</div>
 
 ---
 
