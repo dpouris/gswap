@@ -136,7 +136,7 @@ class GSwap {
             this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findNextActiveElement, "f").call(this);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === this.images.length - 1 &&
-                this.options.navigation === true) {
+                this.options.repeat === false) {
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = false;
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").style.filter = "opacity(1)";
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = true;
@@ -147,7 +147,7 @@ class GSwap {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
             this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findPrevActiveElem, "f").call(this);
-            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.navigation === true) {
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.repeat === false) {
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = false;
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(1)";
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = true;
@@ -156,6 +156,8 @@ class GSwap {
         };
         this.images = images;
         this.options = options;
+        this.options.repeat =
+            this.options.repeat === undefined ? true : this.options.repeat;
         if (typeof containerElem === "string") {
             let container = document.getElementById(containerElem);
             if (!container) {

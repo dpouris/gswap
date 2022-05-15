@@ -15,6 +15,8 @@ export default class GSwap implements GallerySwap {
   ) {
     this.images = images;
     this.options = options;
+    this.options.repeat =
+      this.options.repeat === undefined ? true : this.options.repeat;
 
     if (typeof containerElem === "string") {
       let container = document.getElementById(containerElem as string);
@@ -240,7 +242,7 @@ export default class GSwap implements GallerySwap {
 
     if (
       this.#currentImg === this.images.length - 1 &&
-      this.options.navigation === true
+      this.options.repeat === false
     ) {
       this.#backNavBtn!.disabled = false;
       this.#backNavBtn!.style.filter = "opacity(1)";
@@ -254,7 +256,7 @@ export default class GSwap implements GallerySwap {
     this.stackImages();
     this.#findPrevActiveElem();
 
-    if (this.#currentImg === 0 && this.options.navigation === true) {
+    if (this.#currentImg === 0 && this.options.repeat === false) {
       this.#nextNavBtn!.disabled = false;
       this.#nextNavBtn!.style.filter = "opacity(1)";
       this.#backNavBtn!.disabled = true;
