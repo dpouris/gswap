@@ -59,7 +59,8 @@ class GSwap {
             var _a;
             const last = this.containerElem.children[0].lastElementChild;
             this.containerElem.children[0].insertAdjacentHTML("afterbegin", last.outerHTML);
-            __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
+                __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
             last.remove();
         });
         _GSwap_shiftImagesToTheLeft.set(this, () => {
@@ -68,7 +69,8 @@ class GSwap {
                 .firstElementChild;
             this.containerElem.children[0].insertAdjacentHTML("beforeend", first.outerHTML);
             first.style.opacity = "0";
-            __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
+                __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
             first.remove();
         });
         _GSwap_findPrevActiveElem.set(this, () => {
@@ -166,12 +168,12 @@ class GSwap {
             }
             if (index > __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
                 for (let i = 0; i < index - __classPrivateFieldGet(this, _GSwap_currentImg, "f"); i++) {
-                    __classPrivateFieldGet(this, _GSwap_shiftImagesToTheRight, "f").call(this);
+                    this.next();
                 }
                 return;
             }
             for (let i = 0; i < __classPrivateFieldGet(this, _GSwap_currentImg, "f") - index; i++) {
-                __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
+                this.prev();
             }
         };
         this.images = images;
