@@ -8,13 +8,25 @@ export class GSwap {
   #currentImg: number = 0;
 
   constructor(
-    containerElem: HTMLDivElement,
+    containerElem: string | HTMLDivElement,
     images: string[],
     options: Options = {}
   ) {
-    this.containerElem = containerElem;
     this.images = images;
     this.options = options;
+
+    if (typeof containerElem === "string") {
+      let container = document.getElementById(containerElem as string);
+      if (!container) {
+        container = document.createElement("div");
+        container.id = containerElem as string;
+        document.body.appendChild(container);
+        this.containerElem = container as HTMLDivElement;
+      }
+      this.containerElem = container as HTMLDivElement;
+    } else {
+      this.containerElem = containerElem;
+    }
 
     this.options.imgDimensions = this.options.imgDimensions
       ? this.options.imgDimensions

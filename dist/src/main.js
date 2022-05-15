@@ -118,9 +118,21 @@ class GSwap {
             this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findPrevActiveElem, "f").call(this);
         };
-        this.containerElem = containerElem;
         this.images = images;
         this.options = options;
+        if (typeof containerElem === "string") {
+            let container = document.getElementById(containerElem);
+            if (!container) {
+                container = document.createElement("div");
+                container.id = containerElem;
+                document.body.appendChild(container);
+                this.containerElem = container;
+            }
+            this.containerElem = container;
+        }
+        else {
+            this.containerElem = containerElem;
+        }
         this.options.imgDimensions = this.options.imgDimensions
             ? this.options.imgDimensions
             : { width: 300, height: 300 };
@@ -173,3 +185,4 @@ _GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSw
         this.containerElem.appendChild(__classPrivateFieldGet(this, _GSwap_createNavigation, "f").call(this));
     }
 };
+//# sourceMappingURL=main.js.map

@@ -41,7 +41,7 @@ const gswap = new GSwap({
 This will create a new instance of gswap and will place the gallery absolutely inside the container you specified.
 
 - **containerElem** (_required_):
-  - The container (div) element where the gallery will be placed absolutely.
+  - The container (div) element where the gallery will be placed absolutely or a string value representing the id of an existing div in the document. If none is found the div will be created and be appended at the end of the body.
 - **images** (_required_):
   - An array of image paths.
 - **options** (_optional_):

@@ -4,7 +4,7 @@ export declare class GSwap {
     containerElem: HTMLDivElement;
     images: string[];
     options: Options;
-    constructor(containerElem: HTMLDivElement, images: string[], options?: Options);
+    constructor(containerElem: string | HTMLDivElement, images: string[], options?: Options);
     stackImages: () => void;
     next: () => void;
     prev: () => void;
