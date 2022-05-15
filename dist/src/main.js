@@ -4,12 +4,20 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _GSwap_instances, _GSwap_currentImg, _GSwap_creatImageContainerElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnMainContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findPrevActiveElem, _GSwap_findNextActiveElement;
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var _GSwap_instances, _GSwap_currentImg, _GSwap_nextNavBtn, _GSwap_backNavBtn, _GSwap_creatImageContainerElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnMainContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findPrevActiveElem, _GSwap_findNextActiveElement;
 Object.defineProperty(exports, "__esModule", { value: true });
 class GSwap {
     constructor(containerElem, images, options = {}) {
         _GSwap_instances.add(this);
         _GSwap_currentImg.set(this, 0);
+        _GSwap_nextNavBtn.set(this, void 0);
+        _GSwap_backNavBtn.set(this, void 0);
         _GSwap_createNavigation.set(this, () => {
             const nav = document.createElement("nav");
             nav.classList.add("gallery-swap-nav");
@@ -23,6 +31,11 @@ class GSwap {
             navLeftBtn.innerHTML = "&larr;";
             navLeftBtn.classList.add("gallery-swap-nav-left");
             navLeftBtn.style.fontSize = "2rem";
+            // If option repeat is false then at the start the back button is disabled
+            if (!this.options.repeat) {
+                navLeftBtn.disabled = true;
+                navLeftBtn.style.filter = "opacity(0.5)";
+            }
             const navRightBtn = document.createElement("button");
             navRightBtn.onclick = this.next;
             navRightBtn.innerHTML = "&rarr;";
@@ -38,18 +51,24 @@ class GSwap {
             }
             nav.appendChild(navLeftBtn);
             nav.appendChild(navRightBtn);
+            __classPrivateFieldSet(this, _GSwap_nextNavBtn, navRightBtn, "f");
+            __classPrivateFieldSet(this, _GSwap_backNavBtn, navLeftBtn, "f");
             return nav;
         });
         _GSwap_shiftImagesToTheRight.set(this, () => {
+            var _a;
             const last = this.containerElem.children[0].lastElementChild;
             this.containerElem.children[0].insertAdjacentHTML("afterbegin", last.outerHTML);
+            __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
             last.remove();
         });
         _GSwap_shiftImagesToTheLeft.set(this, () => {
+            var _a;
             const first = this.containerElem.children[0]
                 .firstElementChild;
             this.containerElem.children[0].insertAdjacentHTML("beforeend", first.outerHTML);
             first.style.opacity = "0";
+            __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
             first.remove();
         });
         _GSwap_findPrevActiveElem.set(this, () => {
@@ -116,11 +135,20 @@ class GSwap {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheRight, "f").call(this);
             this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findNextActiveElement, "f").call(this);
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === this.images.length - 1 &&
+                this.options.navigation === true) {
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = true;
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(0.5)";
+            }
         };
         this.prev = () => {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
             this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findPrevActiveElem, "f").call(this);
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.navigation === true) {
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = true;
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").style.filter = "opacity(0.5)";
+            }
         };
         this.images = images;
         this.options = options;
@@ -152,7 +180,7 @@ class GSwap {
     }
 }
 exports.default = GSwap;
-_GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findPrevActiveElem = new WeakMap(), _GSwap_findNextActiveElement = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_creatImageContainerElement = function _GSwap_creatImageContainerElement() {
+_GSwap_currentImg = new WeakMap(), _GSwap_nextNavBtn = new WeakMap(), _GSwap_backNavBtn = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findPrevActiveElem = new WeakMap(), _GSwap_findNextActiveElement = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_creatImageContainerElement = function _GSwap_creatImageContainerElement() {
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("gallery-swap");
     imageContainer.style.height = this.options.imgDimensions.height + "px";

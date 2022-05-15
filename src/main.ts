@@ -5,6 +5,8 @@ export default class GSwap implements GallerySwap {
   images;
   options;
   #currentImg: number = 0;
+  #nextNavBtn?: HTMLButtonElement;
+  #backNavBtn?: HTMLButtonElement;
 
   constructor(
     containerElem: string | HTMLDivElement,
@@ -100,6 +102,11 @@ export default class GSwap implements GallerySwap {
     navLeftBtn.innerHTML = "&larr;";
     navLeftBtn.classList.add("gallery-swap-nav-left");
     navLeftBtn.style.fontSize = "2rem";
+    // If option repeat is false then at the start the back button is disabled
+    if (!this.options.repeat) {
+      navLeftBtn.disabled = true;
+      navLeftBtn.style.filter = "opacity(0.5)";
+    }
 
     const navRightBtn = document.createElement("button");
     navRightBtn.onclick = this.next;
@@ -118,6 +125,9 @@ export default class GSwap implements GallerySwap {
 
     nav.appendChild(navLeftBtn);
     nav.appendChild(navRightBtn);
+
+    this.#nextNavBtn = navRightBtn;
+    this.#backNavBtn = navLeftBtn;
 
     return nav;
   };
@@ -138,7 +148,7 @@ export default class GSwap implements GallerySwap {
       "afterbegin",
       last.outerHTML
     );
-
+    this.#currentImg++;
     last.remove();
   };
 
@@ -151,6 +161,7 @@ export default class GSwap implements GallerySwap {
     );
     first.style.opacity = "0";
 
+    this.#currentImg--;
     first.remove();
   };
 
@@ -226,11 +237,24 @@ export default class GSwap implements GallerySwap {
     this.#shiftImagesToTheRight();
     this.stackImages();
     this.#findNextActiveElement();
+
+    if (
+      this.#currentImg === this.images.length - 1 &&
+      this.options.navigation === true
+    ) {
+      this.#nextNavBtn!.disabled = true;
+      this.#nextNavBtn!.style.filter = "opacity(0.5)";
+    }
   };
 
   prev = () => {
     this.#shiftImagesToTheLeft();
     this.stackImages();
     this.#findPrevActiveElem();
+
+    if (this.#currentImg === 0 && this.options.navigation === true) {
+      this.#backNavBtn!.disabled = true;
+      this.#backNavBtn!.style.filter = "opacity(0.5)";
+    }
   };
 }
