@@ -9,6 +9,10 @@
     "gswap.gif",
     "dist/"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./types": "./dist/types/index.js"
+  },
   "directories": {
     "example": "examples"
   },
