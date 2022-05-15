@@ -4,7 +4,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _GSwap_instances, _GSwap_currentImg, _GSwap_createGSwapElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findPrevActiveElem, _GSwap_findNextActiveElement;
+var _GSwap_instances, _GSwap_currentImg, _GSwap_creatImageContainerElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnMainContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findPrevActiveElem, _GSwap_findNextActiveElement;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GSwap = void 0;
 class GSwap {
@@ -45,7 +45,6 @@ class GSwap {
             this.containerElem.children[0].insertAdjacentHTML("beforeend", first.outerHTML);
             first.style.opacity = "0";
             first.remove();
-            // first.remove();
         });
         _GSwap_findPrevActiveElem.set(this, () => {
             this.containerElem.children[0].childNodes.forEach((image) => {
@@ -99,12 +98,11 @@ class GSwap {
             }
             let counter = 0;
             this.containerElem.children[0].childNodes.forEach((image) => {
-                image.style.position = "absolute";
-                image.style.opacity = "1";
-                image.style.top =
-                    (counter * directionTop).toString() + "px";
-                image.style.left =
-                    (counter * directionLeft).toString() + "px";
+                const imgElem = image;
+                imgElem.style.position = "absolute";
+                imgElem.style.opacity = "1";
+                imgElem.style.top = (counter * directionTop).toString() + "px";
+                imgElem.style.left = (counter * directionLeft).toString() + "px";
                 counter++;
             });
         };
@@ -126,7 +124,6 @@ class GSwap {
                 container = document.createElement("div");
                 container.id = containerElem;
                 document.body.appendChild(container);
-                this.containerElem = container;
             }
             this.containerElem = container;
         }
@@ -136,36 +133,34 @@ class GSwap {
         this.options.imgDimensions = this.options.imgDimensions
             ? this.options.imgDimensions
             : { width: 300, height: 300 };
-        this.options.direction = this.options.direction;
+        this.options.direction =
+            this.options.direction === undefined ? "left" : this.options.direction;
         this.options.animationDuration =
             this.options.animationDuration === undefined
                 ? 300
                 : this.options.animationDuration;
-        this.options.direction =
-            this.options.direction === undefined ? "left" : this.options.direction;
         this.options.navigation =
             this.options.navigation === undefined ? true : this.options.navigation;
-        __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_appendElementsOnContainer).call(this);
+        __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_appendElementsOnMainContainer).call(this);
         this.stackImages();
     }
 }
 exports.GSwap = GSwap;
-_GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findPrevActiveElem = new WeakMap(), _GSwap_findNextActiveElement = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_createGSwapElement = function _GSwap_createGSwapElement() {
-    const GSElement = document.createElement("div");
-    GSElement.classList.add("gallery-swap");
-    // GSElement.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
-    GSElement.style.height = this.options.imgDimensions.height * 2 + "px";
-    GSElement.style.width = this.options.imgDimensions.width * 2 + "px";
-    GSElement.style.position = "relative";
-    // GSElement.style.animation = this.options.animation;
-    // GSElement.style.animationDuration = this.options.animationDuration;
-    // const imageContainer = document.createElement("div");
+_GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findPrevActiveElem = new WeakMap(), _GSwap_findNextActiveElement = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_creatImageContainerElement = function _GSwap_creatImageContainerElement() {
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("gallery-swap");
+    imageContainer.style.height = this.options.imgDimensions.height + "px";
+    imageContainer.style.width = this.options.imgDimensions.width + "px";
+    imageContainer.style.position = "relative";
+    // imageContainer.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
+    // imageContainer.style.animation = this.options.animation;
+    // imageContainer.style.animationDuration = this.options.animationDuration;
     // Place images inside div container
     const images = __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_createImageElements).call(this);
     images.forEach((image) => {
-        GSElement.appendChild(image);
+        imageContainer.appendChild(image);
     });
-    return GSElement;
+    return imageContainer;
 }, _GSwap_createImageElements = function _GSwap_createImageElements() {
     return this.images.map((image) => {
         const imgElement = document.createElement("img");
@@ -178,10 +173,10 @@ _GSwap_currentImg = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSw
         imgElement.style.transition = `all ${this.options.animationDuration}ms ease-in-out`;
         return imgElement;
     });
-}, _GSwap_appendElementsOnContainer = function _GSwap_appendElementsOnContainer() {
+}, _GSwap_appendElementsOnMainContainer = function _GSwap_appendElementsOnMainContainer() {
     this.containerElem.innerHTML = "";
-    this.containerElem.appendChild(__classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_createGSwapElement).call(this));
-    if (this.options.navigation === true) {
+    this.containerElem.appendChild(__classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_creatImageContainerElement).call(this));
+    if (this.options.navigation) {
         this.containerElem.appendChild(__classPrivateFieldGet(this, _GSwap_createNavigation, "f").call(this));
     }
 };

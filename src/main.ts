@@ -4,7 +4,6 @@ export class GSwap {
   containerElem: HTMLDivElement;
   images: string[];
   options: Options;
-
   #currentImg: number = 0;
 
   constructor(
@@ -21,7 +20,6 @@ export class GSwap {
         container = document.createElement("div");
         container.id = containerElem as string;
         document.body.appendChild(container);
-        this.containerElem = container as HTMLDivElement;
       }
       this.containerElem = container as HTMLDivElement;
     } else {
@@ -31,39 +29,40 @@ export class GSwap {
     this.options.imgDimensions = this.options.imgDimensions
       ? this.options.imgDimensions
       : { width: 300, height: 300 };
-    this.options.direction = this.options.direction;
+
+    this.options.direction =
+      this.options.direction === undefined ? "left" : this.options.direction;
+
     this.options.animationDuration =
       this.options.animationDuration === undefined
         ? 300
         : this.options.animationDuration;
-    this.options.direction =
-      this.options.direction === undefined ? "left" : this.options.direction;
+
     this.options.navigation =
       this.options.navigation === undefined ? true : this.options.navigation;
 
-    this.#appendElementsOnContainer();
+    this.#appendElementsOnMainContainer();
 
     this.stackImages();
   }
 
-  #createGSwapElement() {
-    const GSElement = document.createElement("div");
-    GSElement.classList.add("gallery-swap");
-    // GSElement.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
-    GSElement.style.height = this.options.imgDimensions!.height * 2 + "px";
-    GSElement.style.width = this.options.imgDimensions!.width * 2 + "px";
-    GSElement.style.position = "relative";
-    // GSElement.style.animation = this.options.animation;
-    // GSElement.style.animationDuration = this.options.animationDuration;
-
-    // const imageContainer = document.createElement("div");
+  #creatImageContainerElement() {
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("gallery-swap");
+    imageContainer.style.height = this.options.imgDimensions!.height + "px";
+    imageContainer.style.width = this.options.imgDimensions!.width + "px";
+    imageContainer.style.position = "relative";
+    // imageContainer.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
+    // imageContainer.style.animation = this.options.animation;
+    // imageContainer.style.animationDuration = this.options.animationDuration;
 
     // Place images inside div container
     const images = this.#createImageElements();
     images.forEach((image) => {
-      GSElement.appendChild(image);
+      imageContainer.appendChild(image);
     });
-    return GSElement;
+
+    return imageContainer;
   }
 
   #createImageElements() {
@@ -110,10 +109,11 @@ export class GSwap {
     return nav;
   };
 
-  #appendElementsOnContainer() {
+  #appendElementsOnMainContainer() {
     this.containerElem.innerHTML = "";
-    this.containerElem.appendChild(this.#createGSwapElement());
-    if (this.options.navigation === true) {
+    this.containerElem.appendChild(this.#creatImageContainerElement());
+
+    if (this.options.navigation) {
       this.containerElem.appendChild(this.#createNavigation());
     }
   }
@@ -128,6 +128,7 @@ export class GSwap {
 
     last.remove();
   };
+
   #shiftImagesToTheLeft = () => {
     const first = this.containerElem.children[0]
       .firstElementChild! as HTMLImageElement;
@@ -138,8 +139,6 @@ export class GSwap {
     first.style.opacity = "0";
 
     first.remove();
-
-    // first.remove();
   };
 
   #findPrevActiveElem = () => {
@@ -163,8 +162,9 @@ export class GSwap {
   #findNextActiveElement = () => {
     this.containerElem.children[0].childNodes.forEach((image) => {
       const imgElem = image as HTMLImageElement;
+
       if (imgElem.classList.contains("active")) {
-        (imgElem as HTMLImageElement).classList.remove("active");
+        imgElem.classList.remove("active");
         imgElem.style.opacity = "0";
         setTimeout(() => {
           imgElem.style.opacity = "1";
@@ -179,6 +179,7 @@ export class GSwap {
   stackImages = () => {
     let directionLeft: number;
     let directionTop: number;
+
     switch (this.options.direction) {
       case "left":
         directionLeft = 20;
@@ -199,12 +200,11 @@ export class GSwap {
     }
     let counter = 0;
     this.containerElem.children[0].childNodes.forEach((image) => {
-      (image as HTMLImageElement).style.position = "absolute";
-      (image as HTMLImageElement).style.opacity = "1";
-      (image as HTMLImageElement).style.top =
-        (counter * directionTop).toString() + "px";
-      (image as HTMLImageElement).style.left =
-        (counter * directionLeft).toString() + "px";
+      const imgElem = image as HTMLImageElement;
+      imgElem.style.position = "absolute";
+      imgElem.style.opacity = "1";
+      imgElem.style.top = (counter * directionTop).toString() + "px";
+      imgElem.style.left = (counter * directionLeft).toString() + "px";
       counter++;
     });
   };
