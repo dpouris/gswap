@@ -242,6 +242,8 @@ export default class GSwap implements GallerySwap {
       this.#currentImg === this.images.length - 1 &&
       this.options.navigation === true
     ) {
+      this.#backNavBtn!.disabled = false;
+      this.#backNavBtn!.style.filter = "opacity(1)";
       this.#nextNavBtn!.disabled = true;
       this.#nextNavBtn!.style.filter = "opacity(0.5)";
     }
@@ -253,6 +255,8 @@ export default class GSwap implements GallerySwap {
     this.#findPrevActiveElem();
 
     if (this.#currentImg === 0 && this.options.navigation === true) {
+      this.#nextNavBtn!.disabled = false;
+      this.#nextNavBtn!.style.filter = "opacity(1)";
       this.#backNavBtn!.disabled = true;
       this.#backNavBtn!.style.filter = "opacity(0.5)";
     }

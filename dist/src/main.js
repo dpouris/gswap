@@ -137,6 +137,8 @@ class GSwap {
             __classPrivateFieldGet(this, _GSwap_findNextActiveElement, "f").call(this);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === this.images.length - 1 &&
                 this.options.navigation === true) {
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = false;
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").style.filter = "opacity(1)";
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = true;
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(0.5)";
             }
@@ -146,6 +148,8 @@ class GSwap {
             this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findPrevActiveElem, "f").call(this);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.navigation === true) {
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = false;
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(1)";
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = true;
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").style.filter = "opacity(0.5)";
             }
