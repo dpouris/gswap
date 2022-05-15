@@ -1,4 +1,4 @@
-import type { Options, GallerySwap } from "../types";
+import type { Options, GallerySwap } from "../@types/GallerySwapTypes";
 export default class GSwap implements GallerySwap {
     #private;
     containerElem: HTMLDivElement;
