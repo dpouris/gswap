@@ -14,21 +14,20 @@ class GSwap {
         _GSwap_createNavigation.set(this, () => {
             const nav = document.createElement("nav");
             nav.classList.add("gallery-swap-nav");
+            nav.style.display = "flex";
+            nav.style.justifyContent = "center";
+            nav.style.alignItems = "center";
+            nav.style.gap = "3rem";
+            // Todo (if this.options.verticalBtns is true) add class flexDirection = column and remove gap = 3
             const navLeftBtn = document.createElement("button");
             navLeftBtn.onclick = this.prev;
             navLeftBtn.innerHTML = "&larr;";
             navLeftBtn.classList.add("gallery-swap-nav-left");
-            navLeftBtn.style.display = "flex";
-            navLeftBtn.style.justifyContent = "center";
-            navLeftBtn.style.alignItems = "center";
             navLeftBtn.style.fontSize = "2rem";
             const navRightBtn = document.createElement("button");
             navRightBtn.onclick = this.next;
             navRightBtn.innerHTML = "&rarr;";
             navRightBtn.classList.add("gallery-swap-nav-right");
-            navRightBtn.style.display = "flex";
-            navRightBtn.style.justifyContent = "center";
-            navRightBtn.style.alignItems = "center";
             navRightBtn.style.fontSize = "2rem";
             if (this.options.navigation === "forwardOnly") {
                 nav.appendChild(navRightBtn);
