@@ -154,6 +154,26 @@ class GSwap {
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").style.filter = "opacity(0.5)";
             }
         };
+        this.goTo = (index) => {
+            if (index >= this.images.length) {
+                throw new Error("Index out of bounds");
+            }
+            if (index < 0) {
+                throw new Error("Index out of bounds");
+            }
+            if (index === __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
+                return;
+            }
+            if (index > __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
+                for (let i = 0; i < index - __classPrivateFieldGet(this, _GSwap_currentImg, "f"); i++) {
+                    this.next();
+                }
+                return;
+            }
+            for (let i = 0; i < __classPrivateFieldGet(this, _GSwap_currentImg, "f") - index; i++) {
+                this.prev();
+            }
+        };
         this.images = images;
         this.options = options;
         this.options.repeat =

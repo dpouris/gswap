@@ -8,4 +8,5 @@ export default class GSwap implements GallerySwap {
     stackImages: () => void;
     next: () => void;
     prev: () => void;
+    goTo: (index: number) => void;
 }

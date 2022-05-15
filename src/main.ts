@@ -263,4 +263,28 @@ export default class GSwap implements GallerySwap {
       this.#backNavBtn!.style.filter = "opacity(0.5)";
     }
   };
+
+  goTo = (index: number) => {
+    if (index >= this.images.length) {
+      throw new Error("Index out of bounds");
+    }
+
+    if (index < 0) {
+      throw new Error("Index out of bounds");
+    }
+
+    if (index === this.#currentImg) {
+      return;
+    }
+
+    if (index > this.#currentImg) {
+      for (let i = 0; i < index - this.#currentImg; i++) {
+        this.next();
+      }
+      return;
+    }
+    for (let i = 0; i < this.#currentImg - index; i++) {
+      this.prev();
+    }
+  };
 }

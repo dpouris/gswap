@@ -86,11 +86,9 @@ This will create a new instance of gswap and will place the gallery absolutely i
 
 ---
 
-## **repeat** (_boolean_) -> [wip]
+## **repeat** (_boolean_)
 
     If true, the gallery will loop infinitely. # true || false
-
-    [wip]
 
 - **Default**: true
 
