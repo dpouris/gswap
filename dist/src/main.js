@@ -14,24 +14,32 @@ class GSwap {
         _GSwap_createNavigation.set(this, () => {
             const nav = document.createElement("nav");
             nav.classList.add("gallery-swap-nav");
-            const navLeft = document.createElement("button");
-            navLeft.onclick = this.prev;
-            navLeft.innerHTML = "&larr;";
-            navLeft.classList.add("gallery-swap-nav-left");
-            const navRight = document.createElement("button");
-            navRight.onclick = this.next;
-            navRight.innerHTML = "&rarr;";
-            navRight.classList.add("gallery-swap-nav-right");
+            const navLeftBtn = document.createElement("button");
+            navLeftBtn.onclick = this.prev;
+            navLeftBtn.innerHTML = "&larr;";
+            navLeftBtn.classList.add("gallery-swap-nav-left");
+            navLeftBtn.style.display = "flex";
+            navLeftBtn.style.justifyContent = "center";
+            navLeftBtn.style.alignItems = "center";
+            navLeftBtn.style.fontSize = "2rem";
+            const navRightBtn = document.createElement("button");
+            navRightBtn.onclick = this.next;
+            navRightBtn.innerHTML = "&rarr;";
+            navRightBtn.classList.add("gallery-swap-nav-right");
+            navRightBtn.style.display = "flex";
+            navRightBtn.style.justifyContent = "center";
+            navRightBtn.style.alignItems = "center";
+            navRightBtn.style.fontSize = "2rem";
             if (this.options.navigation === "forwardOnly") {
-                nav.appendChild(navRight);
+                nav.appendChild(navRightBtn);
                 return nav;
             }
             if (this.options.navigation === "backOnly") {
-                nav.appendChild(navLeft);
+                nav.appendChild(navLeftBtn);
                 return nav;
             }
-            nav.appendChild(navLeft);
-            nav.appendChild(navRight);
+            nav.appendChild(navLeftBtn);
+            nav.appendChild(navRightBtn);
             return nav;
         });
         _GSwap_shiftImagesToTheRight.set(this, () => {
