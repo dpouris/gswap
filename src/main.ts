@@ -151,6 +151,7 @@ export default class GSwap implements GallerySwap {
       last.outerHTML
     );
 
+    this.#currentImg++;
     last.remove();
   };
 
@@ -162,7 +163,7 @@ export default class GSwap implements GallerySwap {
       first.outerHTML
     );
     first.style.opacity = "0";
-
+    this.#currentImg--;
     first.remove();
   };
 
