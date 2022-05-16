@@ -191,6 +191,9 @@ export default class GSwap implements GallerySwap {
     // );
     first.animate(ANIMATIONS.fade);
 
+    first.onanimationend = () => {
+      console.log("hey");
+    };
     this.containerElem.children[0].append(first);
     if (this.#currentImg > 0) this.#currentImg--;
     first.style.opacity = "1";
