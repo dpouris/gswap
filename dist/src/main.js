@@ -87,6 +87,7 @@ class GSwap {
             }, this.options.animationDuration || 300);
         });
         _GSwap_shiftImagesToTheLeft.set(this, () => {
+            var _a;
             const first = this.containerElem.children[0]
                 .firstElementChild;
             // this.containerElem.children[0].insertAdjacentHTML(
@@ -96,15 +97,13 @@ class GSwap {
             first.animate(ANIMATIONS.fade, {
                 duration: this.options.animationDuration || 300,
             });
-            setTimeout(() => {
-                var _a;
-                this.containerElem.children[0].append(first);
-                if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
-                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
-                first.style.opacity = "1";
-                this.stackImages();
-                __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
-            }, this.options.animationDuration || 300);
+            setTimeout(() => { }, this.options.animationDuration || 300);
+            this.containerElem.children[0].append(first);
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
+                __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
+            first.style.opacity = "1";
+            this.stackImages();
+            __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
         });
         _GSwap_findActiveElem.set(this, () => {
             this.containerElem.children[0].childNodes.forEach((image) => {
