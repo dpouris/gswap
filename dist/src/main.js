@@ -58,18 +58,22 @@ class GSwap {
         _GSwap_shiftImagesToTheRight.set(this, () => {
             const last = this.containerElem.children[0]
                 .lastElementChild;
+            const first = this.containerElem.children[0]
+                .firstElementChild;
             // this.containerElem.children[0].insertAdjacentHTML(
             //   "afterbegin",
             //   last.outerHTML
             // );
             last.style.opacity = "0";
+            first.style.opacity = "0";
             last.ontransitionend = () => {
                 var _a;
-                last.style.opacity = "1";
                 this.containerElem.children[0].prepend(last);
+                first.style.opacity = "1";
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
                 last.ontransitionend = null;
+                last.style.opacity = "1";
                 this.stackImages();
             };
         });
@@ -83,11 +87,11 @@ class GSwap {
             first.style.opacity = "0";
             first.ontransitionend = () => {
                 var _a;
-                first.style.opacity = "1";
                 this.containerElem.children[0].append(first);
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
                 first.ontransitionend = null;
+                first.style.opacity = "1";
                 this.stackImages();
             };
         });
