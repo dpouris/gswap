@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+    "err": {
+      "name": "pnpm",
+      "message": "Cannot remove '@dpouris/gswap': project has no dependencies of any kind",
+      "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+      "stack": "pnpm: Cannot remove '@dpouris/gswap': project has no dependencies of any kind\n    at Object.handler (/opt/homebrew/Cellar/pnpm/6.32.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:123085:15)\n    at async /opt/homebrew/Cellar/pnpm/6.32.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:182247:21\n    at async run (/opt/homebrew/Cellar/pnpm/6.32.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:182221:34)\n    at async runPnpm (/opt/homebrew/Cellar/pnpm/6.32.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:182440:5)\n    at async /opt/homebrew/Cellar/pnpm/6.32.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:182432:7"
+    }
+  }
+}

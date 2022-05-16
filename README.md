@@ -27,14 +27,14 @@ npm i @dpouris/gswap
 First, import the library and create a new gswap instance:
 
 ```js
-import { GSwap } from '@dpouris/gswap';
+import GSwap from '@dpouris/gswap';
 
 ...
 
 const galleryContainer = document.getElementById("gallery")
 
 const gswap = new GSwap({
-  containerElem: galleryContainer,
+  containerElem: galleryContainer // or pass the id "gallery",
 
   images: ["./1.jpg", "./2.jpg", "./3.webp"],
 
@@ -53,7 +53,7 @@ This will create a new instance of gswap and will place the gallery absolutely i
 - **containerElem** (_required_):
   - The container (div) element where the gallery will be placed absolutely or a string value representing the id of an existing div in the document. If none is found the div will be created and be appended at the end of the body.
 - **images** (_required_):
-  - An array of image paths.
+  - An array of image paths or urls.
 - **options** (_optional_):
   - An object of options.
   - See the [options](#Options) section for more details.
@@ -171,4 +171,96 @@ const gallery = new GSwap(...);
 gallery.stackImages();
 ```
 
-Thank you for trying out my first library and I hope you enjoy it. 🫡
+# TypeScript 🥰
+
+You can find the types on `@dpouris/gswap/dist/types`:
+
+```js
+import { GallerySwap, Options } from "@dpouris/gswap/dist/types";
+```
+
+## GallerySwap
+
+```js
+// GSwap
+interface GallerySwap {
+  containerElem: HTMLDivElement;
+  images: string[];
+  options: Options;
+  stackImages(): void;
+  stackImages: () => void;
+  next: () => void;
+  prev: () => void;
+  goTo: (index: number) => void;
+}
+
+// Options
+type Options = {
+  animation?: string,
+  animationDuration?: number,
+  navigation?: boolean | "forwardOnly" | "backOnly",
+  repeat?: boolean,
+  direction?: "left" | "right" | "top" | "bottom",
+  styled?: boolean,
+  imgDimensions?: {
+    height: number,
+    width: number,
+  },
+};
+```
+
+# React Example 😎
+
+```js
+import GSwap from "@dpouris/gswap";
+import { GallerySwap } from "@dpouris/gswap/dist/types";
+import { useEffect, useRef } from "react";
+
+const Gallery = () => {
+  const gallery = useRef<GallerySwap>();
+
+  useEffect(() => {
+    if (!document) return;
+
+    const galleryOptions = {
+      imgDimensions: { height: 500, width: 600 },
+      styled: true,
+      repeat: true,
+    };
+
+    const imageUrls = [
+      "...lqdieniMabM2rLBDJl6XhTwb0=",
+      "...softw-office-140335451.jpg",
+      "...image-164232735.jpg",
+    ];
+
+    gallery.current = new GSwap("gallery", imageUrls, galleryOptions);
+
+  }, [])
+
+  return (
+    <div className="flex flex-col items-center justify-center gap-3 my-4">
+      <h1 className="text-3xl font-medium text-slate-700 mb-4 border-y-2 border-emerald-400 rounded-lg py-4 px-3 ">
+        EVENT GALLERY
+      </h1>
+      <div id="gallery" className="mx-auto"></div>
+      <button
+        onClick={() => {
+          gallery.current!.goTo(2);
+        }}
+      >
+        GOTO 3RD IMAGE
+      </button>
+    </div>
+  );
+};
+
+export default Gallery;
+
+```
+
+The result is the gif at the start of the README.
+
+- The above example is implemented in Next.js hence the checking for document in the useEffect.
+
+## Thank you for trying out my first library and I hope you enjoy it. 🫡
