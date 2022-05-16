@@ -1,1 +1,271 @@
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports["@dpouris/gswap"]=e():t["@dpouris/gswap"]=e()}(this,(()=>(()=>{"use strict";var t={917:(t,e,i)=>{i.r(e),i.d(e,{default:()=>r});var n=i(532),s=i.n(n),o=i(329),a=i.n(o)()(s());a.push([t.id,"@keyframes fade {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes slide {\n  0% {\n    transform: translateX(100%);\n  }\n  100% {\n    transform: translateX(0%);\n  }\n}\n\n.active {\n  animation: fade 0.5s linear;\n}\n",""]);const r=a},329:t=>{t.exports=function(t){var e=[];return e.toString=function(){return this.map((function(e){var i="",n=void 0!==e[5];return e[4]&&(i+="@supports (".concat(e[4],") {")),e[2]&&(i+="@media ".concat(e[2]," {")),n&&(i+="@layer".concat(e[5].length>0?" ".concat(e[5]):""," {")),i+=t(e),n&&(i+="}"),e[2]&&(i+="}"),e[4]&&(i+="}"),i})).join("")},e.i=function(t,i,n,s,o){"string"==typeof t&&(t=[[null,t,void 0]]);var a={};if(n)for(var r=0;r<this.length;r++){var l=this[r][0];null!=l&&(a[l]=!0)}for(var h=0;h<t.length;h++){var c=[].concat(t[h]);n&&a[c[0]]||(void 0!==o&&(void 0===c[5]||(c[1]="@layer".concat(c[5].length>0?" ".concat(c[5]):""," {").concat(c[1],"}")),c[5]=o),i&&(c[2]?(c[1]="@media ".concat(c[2]," {").concat(c[1],"}"),c[2]=i):c[2]=i),s&&(c[4]?(c[1]="@supports (".concat(c[4],") {").concat(c[1],"}"),c[4]=s):c[4]="".concat(s)),e.push(c))}},e}},532:t=>{t.exports=function(t){return t[1]}},118:function(t,e,i){var n,s,o,a,r,l,h,c,d,p,f,m=this&&this.__classPrivateFieldGet||function(t,e,i,n){if("a"===i&&!n)throw new TypeError("Private accessor was defined without a getter");if("function"==typeof e?t!==e||!n:!e.has(t))throw new TypeError("Cannot read private member from an object whose class did not declare it");return"m"===i?n:"a"===i?n.call(t):n?n.value:e.get(t)},u=this&&this.__classPrivateFieldSet||function(t,e,i,n,s){if("m"===n)throw new TypeError("Private method is not writable");if("a"===n&&!s)throw new TypeError("Private accessor was defined without a setter");if("function"==typeof e?t!==e||!s:!e.has(t))throw new TypeError("Cannot write private member to an object whose class did not declare it");return"a"===n?s.call(t,i):s?s.value=i:e.set(t,i),i};Object.defineProperty(e,"__esModule",{value:!0}),i(917),e.default=class{constructor(t,e,i={}){if(n.add(this),s.set(this,0),o.set(this,void 0),a.set(this,void 0),h.set(this,(()=>{const t=document.createElement("nav");t.classList.add("gallery-swap-nav"),t.style.display="flex",t.style.justifyContent="center",t.style.alignItems="center",t.style.gap="3rem";const e=document.createElement("button");e.onclick=this.prev,e.innerHTML="&larr;",e.classList.add("gallery-swap-nav-left"),e.style.fontSize="2rem",this.options.repeat||(e.disabled=!0,e.style.filter="opacity(0.5)");const i=document.createElement("button");return i.onclick=this.next,i.innerHTML="&rarr;",i.classList.add("gallery-swap-nav-right"),i.style.fontSize="2rem","forwardOnly"===this.options.navigation?(t.appendChild(i),t):"backOnly"===this.options.navigation?(t.appendChild(e),t):(t.appendChild(e),t.appendChild(i),u(this,o,i,"f"),u(this,a,e,"f"),t)})),d.set(this,(()=>{const t=this.containerElem.children[0].lastElementChild;t.style.opacity="0",t.ontransitionend=()=>{var e;this.containerElem.children[0].prepend(t),m(this,s,"f")<this.images.length&&u(this,s,(e=m(this,s,"f"),++e),"f"),t.ontransitionend=null,t.style.opacity="1",this.stackImages(),m(this,f,"f").call(this)}})),p.set(this,(()=>{const t=this.containerElem.children[0].firstElementChild;t.style.opacity="0",t.ontransitionend=()=>{var e;this.containerElem.children[0].append(t),m(this,s,"f")>0&&u(this,s,(e=m(this,s,"f"),--e),"f"),t.ontransitionend=null,t.style.opacity="1",this.stackImages(),m(this,f,"f").call(this)}})),f.set(this,(()=>{this.containerElem.children[0].childNodes.forEach((t=>{const e=t;e.classList.contains("active")&&e.classList.remove("active")})),this.containerElem.children[0].lastElementChild.classList.add("active")})),this.stackImages=()=>{let t,e;switch(this.options.direction){case"left":t=20,e=20;break;case"right":t=-20,e=20;break;case"top":t=0,e=20;break;case"bottom":t=0,e=-20}let i=0;this.containerElem.children[0].childNodes.forEach((n=>{const s=n;s.style.top=(i*e).toString()+"px",s.style.left=(i*t).toString()+"px",i++}))},this.next=()=>{m(this,d,"f").call(this),m(this,s,"f")===this.images.length-1&&!1===this.options.repeat&&(m(this,a,"f").disabled=!1,m(this,a,"f").style.filter="opacity(1)",m(this,o,"f").disabled=!0,m(this,o,"f").style.filter="opacity(0.5)")},this.prev=()=>{m(this,p,"f").call(this),0===m(this,s,"f")&&!1===this.options.repeat&&(m(this,o,"f").disabled=!1,m(this,o,"f").style.filter="opacity(1)",m(this,a,"f").disabled=!0,m(this,a,"f").style.filter="opacity(0.5)")},this.goTo=t=>{var e,i;if(t>=this.images.length)throw new Error("Index out of bounds");if(t<0)throw new Error("Index out of bounds");if(t!==m(this,s,"f"))if(t>m(this,s,"f"))for(let i=0;i<=t-m(this,s,"f");i++)this.next(),u(this,s,(e=m(this,s,"f"),++e),"f");else for(let e=0;e<=m(this,s,"f")-t;e++)this.prev(),u(this,s,(i=m(this,s,"f"),--i),"f")},this.images=e,this.options=i,this.options.repeat=void 0===this.options.repeat||this.options.repeat,"string"==typeof t){let e=document.getElementById(t);e||(e=document.createElement("div"),e.id=t,document.body.appendChild(e)),this.containerElem=e}else this.containerElem=t;this.options.imgDimensions=this.options.imgDimensions?this.options.imgDimensions:{width:300,height:300},this.options.direction=void 0===this.options.direction?"left":this.options.direction,this.options.animationDuration=void 0===this.options.animationDuration?300:this.options.animationDuration,this.options.navigation=void 0===this.options.navigation||this.options.navigation,m(this,n,"m",c).call(this),this.stackImages()}},s=new WeakMap,o=new WeakMap,a=new WeakMap,h=new WeakMap,d=new WeakMap,p=new WeakMap,f=new WeakMap,n=new WeakSet,r=function(){const t=document.createElement("div");return t.classList.add("gallery-swap"),t.style.height=this.options.imgDimensions.height+"px",t.style.width=this.options.imgDimensions.width+"px",t.style.position="relative",m(this,n,"m",l).call(this).forEach((e=>{t.appendChild(e)})),t},l=function(){return this.images.map((t=>{const e=document.createElement("img");return t===this.images[this.images.length-1]&&e.classList.add("active"),e.src=t,e.width=this.options.imgDimensions.width,e.height=this.options.imgDimensions.height,e.style.position="absolute",e.style.opacity="1",e.style.transition=`all ${this.options.animationDuration}ms ease-in-out`,this.options.styled?(e.style.boxShadow="rgb(0 0 0 / 30%) -6px 4px 6px 0px",e.style.borderRadius="0.2em",e):e}))},c=function(){this.containerElem.innerHTML="",this.containerElem.appendChild(m(this,n,"m",r).call(this)),this.options.navigation&&this.containerElem.appendChild(m(this,h,"f").call(this))}}},e={};function i(n){var s=e[n];if(void 0!==s)return s.exports;var o=e[n]={id:n,exports:{}};return t[n].call(o.exports,o,o.exports,i),o.exports}return i.n=t=>{var e=t&&t.__esModule?()=>t.default:()=>t;return i.d(e,{a:e}),e},i.d=(t,e)=>{for(var n in e)i.o(e,n)&&!i.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:e[n]})},i.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),i.r=t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},i(118)})()));
+"use strict";
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var _GSwap_instances, _GSwap_currentImg, _GSwap_nextNavBtn, _GSwap_backNavBtn, _GSwap_createImageContainerElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnMainContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findActiveElem;
+Object.defineProperty(exports, "__esModule", { value: true });
+const ANIMATIONS = {
+    fade: [
+        {
+            opacity: 0,
+            color: "#fff",
+        },
+        {
+            opacity: 1,
+            color: "#000",
+        },
+    ],
+    slideRight: [
+        { transform: "translate(100%)" },
+        { transform: "translate(0%)" },
+    ],
+    slideLeft: [
+        { transform: "translate(-100%)" },
+        { transform: "translate(0%)" },
+    ],
+};
+class GSwap {
+    constructor(containerElem, images, options = {}) {
+        _GSwap_instances.add(this);
+        _GSwap_currentImg.set(this, 0);
+        _GSwap_nextNavBtn.set(this, void 0);
+        _GSwap_backNavBtn.set(this, void 0);
+        _GSwap_createNavigation.set(this, () => {
+            const nav = document.createElement("nav");
+            nav.classList.add("gallery-swap-nav");
+            nav.style.display = "flex";
+            nav.style.justifyContent = "center";
+            nav.style.alignItems = "center";
+            nav.style.gap = "3rem";
+            // Todo (if this.options.verticalBtns is true) add class flexDirection = column and remove gap = 3
+            const navLeftBtn = document.createElement("button");
+            navLeftBtn.onclick = this.prev;
+            navLeftBtn.innerHTML = "&larr;";
+            navLeftBtn.classList.add("gallery-swap-nav-left");
+            navLeftBtn.style.fontSize = "2rem";
+            // If option repeat is false then at the start the back button is disabled
+            if (!this.options.repeat) {
+                navLeftBtn.disabled = true;
+                navLeftBtn.style.filter = "opacity(0.5)";
+            }
+            const navRightBtn = document.createElement("button");
+            navRightBtn.onclick = this.next;
+            navRightBtn.innerHTML = "&rarr;";
+            navRightBtn.classList.add("gallery-swap-nav-right");
+            navRightBtn.style.fontSize = "2rem";
+            if (this.options.navigation === "forwardOnly") {
+                nav.appendChild(navRightBtn);
+                return nav;
+            }
+            if (this.options.navigation === "backOnly") {
+                nav.appendChild(navLeftBtn);
+                return nav;
+            }
+            nav.appendChild(navLeftBtn);
+            nav.appendChild(navRightBtn);
+            __classPrivateFieldSet(this, _GSwap_nextNavBtn, navRightBtn, "f");
+            __classPrivateFieldSet(this, _GSwap_backNavBtn, navLeftBtn, "f");
+            return nav;
+        });
+        _GSwap_shiftImagesToTheRight.set(this, () => {
+            const last = this.containerElem.children[0]
+                .lastElementChild;
+            // this.containerElem.children[0].insertAdjacentHTML(
+            //   "afterbegin",
+            //   last.outerHTML
+            // );
+            last.animate(ANIMATIONS.fade);
+            last.onanimationend = () => {
+                var _a;
+                this.containerElem.children[0].prepend(last);
+                if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
+                last.ontransitionend = null;
+                last.style.opacity = "1";
+                this.stackImages();
+                __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
+            };
+        });
+        _GSwap_shiftImagesToTheLeft.set(this, () => {
+            const first = this.containerElem.children[0]
+                .firstElementChild;
+            // this.containerElem.children[0].insertAdjacentHTML(
+            //   "beforeend",
+            //   first.outerHTML
+            // );
+            first.animate(ANIMATIONS.fade);
+            first.onanimationend = () => {
+                var _a;
+                this.containerElem.children[0].append(first);
+                if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
+                first.ontransitionend = null;
+                first.style.opacity = "1";
+                this.stackImages();
+                __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
+            };
+        });
+        _GSwap_findActiveElem.set(this, () => {
+            this.containerElem.children[0].childNodes.forEach((image) => {
+                const imgElem = image;
+                if (imgElem.classList.contains("active")) {
+                    imgElem.classList.remove("active");
+                }
+            });
+            const activeElem = this.containerElem.children[0]
+                .lastElementChild;
+            activeElem.classList.add("active");
+        });
+        this.stackImages = () => {
+            let directionLeft;
+            let directionTop;
+            switch (this.options.direction) {
+                case "left":
+                    directionLeft = 20;
+                    directionTop = 20;
+                    break;
+                case "right":
+                    directionLeft = -20;
+                    directionTop = 20;
+                    break;
+                case "top":
+                    directionLeft = 0;
+                    directionTop = 20;
+                    break;
+                case "bottom":
+                    directionLeft = 0;
+                    directionTop = -20;
+                    break;
+            }
+            let counter = 0;
+            this.containerElem.children[0].childNodes.forEach((image) => {
+                const imgElem = image;
+                imgElem.style.top = (counter * directionTop).toString() + "px";
+                imgElem.style.left = (counter * directionLeft).toString() + "px";
+                counter++;
+            });
+        };
+        this.next = () => {
+            __classPrivateFieldGet(this, _GSwap_shiftImagesToTheRight, "f").call(this);
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === this.images.length - 1 &&
+                this.options.repeat === false) {
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = false;
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").style.filter = "opacity(1)";
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = true;
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(0.5)";
+            }
+        };
+        this.prev = () => {
+            __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
+            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.repeat === false) {
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = false;
+                __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(1)";
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = true;
+                __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").style.filter = "opacity(0.5)";
+            }
+        };
+        this.goTo = (index) => {
+            var _a, _b;
+            if (index >= this.images.length) {
+                throw new Error("Index out of bounds");
+            }
+            if (index < 0) {
+                throw new Error("Index out of bounds");
+            }
+            if (index === __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
+                return;
+            }
+            if (index > __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
+                for (let i = 0; i <= index - __classPrivateFieldGet(this, _GSwap_currentImg, "f"); i++) {
+                    this.next();
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
+                }
+                return;
+            }
+            for (let i = 0; i <= __classPrivateFieldGet(this, _GSwap_currentImg, "f") - index; i++) {
+                this.prev();
+                __classPrivateFieldSet(this, _GSwap_currentImg, (_b = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _b--, _b), "f");
+            }
+        };
+        this.images = images;
+        this.options = options;
+        this.options.repeat =
+            this.options.repeat === undefined ? true : this.options.repeat;
+        if (typeof containerElem === "string") {
+            let container = document.getElementById(containerElem);
+            if (!container) {
+                container = document.createElement("div");
+                container.id = containerElem;
+                document.body.appendChild(container);
+            }
+            this.containerElem = container;
+        }
+        else {
+            this.containerElem = containerElem;
+        }
+        this.options.imgDimensions = this.options.imgDimensions
+            ? this.options.imgDimensions
+            : { width: 300, height: 300 };
+        this.options.direction =
+            this.options.direction === undefined ? "left" : this.options.direction;
+        this.options.animationDuration =
+            this.options.animationDuration === undefined
+                ? 300
+                : this.options.animationDuration;
+        this.options.navigation =
+            this.options.navigation === undefined ? true : this.options.navigation;
+        __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_appendElementsOnMainContainer).call(this);
+        this.stackImages();
+    }
+}
+exports.default = GSwap;
+_GSwap_currentImg = new WeakMap(), _GSwap_nextNavBtn = new WeakMap(), _GSwap_backNavBtn = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findActiveElem = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_createImageContainerElement = function _GSwap_createImageContainerElement() {
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("gallery-swap");
+    imageContainer.style.height = this.options.imgDimensions.height + "px";
+    imageContainer.style.width = this.options.imgDimensions.width + "px";
+    imageContainer.style.position = "relative";
+    // imageContainer.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
+    // imageContainer.style.animation = this.options.animation;
+    // imageContainer.style.animationDuration = this.options.animationDuration;
+    // Place images inside div container
+    const images = __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_createImageElements).call(this);
+    images.forEach((image) => {
+        imageContainer.appendChild(image);
+    });
+    return imageContainer;
+}, _GSwap_createImageElements = function _GSwap_createImageElements() {
+    return this.images.map((image) => {
+        const imgElement = document.createElement("img");
+        if (image === this.images[this.images.length - 1]) {
+            imgElement.classList.add("active");
+        }
+        imgElement.src = image;
+        imgElement.width = this.options.imgDimensions.width;
+        imgElement.height = this.options.imgDimensions.height;
+        imgElement.style.position = "absolute";
+        imgElement.style.opacity = "1";
+        imgElement.style.transition = `all ${this.options.animationDuration}ms ease-in-out`;
+        // Optional image beautification
+        if (!this.options.styled)
+            return imgElement;
+        imgElement.style.boxShadow = "rgb(0 0 0 / 30%) -6px 4px 6px 0px";
+        imgElement.style.borderRadius = "0.2em";
+        return imgElement;
+    });
+}, _GSwap_appendElementsOnMainContainer = function _GSwap_appendElementsOnMainContainer() {
+    this.containerElem.innerHTML = "";
+    this.containerElem.appendChild(__classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_createImageContainerElement).call(this));
+    if (this.options.navigation) {
+        this.containerElem.appendChild(__classPrivateFieldGet(this, _GSwap_createNavigation, "f").call(this));
+    }
+};
+//# sourceMappingURL=main.js.map

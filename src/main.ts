@@ -1,5 +1,27 @@
 import type { Options, GallerySwap } from "../types";
-const keyframes = require("../styles/keyframes.css");
+
+const ANIMATIONS = {
+  fade: [
+    {
+      opacity: 0,
+      color: "#fff",
+    },
+    {
+      opacity: 1,
+      color: "#000",
+    },
+  ],
+
+  slideRight: [
+    { transform: "translate(100%)" },
+    { transform: "translate(0%)" },
+  ],
+
+  slideLeft: [
+    { transform: "translate(-100%)" },
+    { transform: "translate(0%)" },
+  ],
+};
 
 export default class GSwap implements GallerySwap {
   containerElem;
@@ -151,8 +173,8 @@ export default class GSwap implements GallerySwap {
     //   "afterbegin",
     //   last.outerHTML
     // );
-    last.style.opacity = "0";
-    last.ontransitionend = () => {
+    last.animate(ANIMATIONS.fade);
+    last.onanimationend = () => {
       this.containerElem.children[0].prepend(last);
       if (this.#currentImg < this.images.length) this.#currentImg++;
       last.ontransitionend = null;
@@ -169,8 +191,8 @@ export default class GSwap implements GallerySwap {
     //   "beforeend",
     //   first.outerHTML
     // );
-    first.style.opacity = "0";
-    first.ontransitionend = () => {
+    first.animate(ANIMATIONS.fade);
+    first.onanimationend = () => {
       this.containerElem.children[0].append(first);
       if (this.#currentImg > 0) this.#currentImg--;
       first.ontransitionend = null;
