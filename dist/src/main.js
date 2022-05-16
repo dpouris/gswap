@@ -57,7 +57,9 @@ class GSwap {
         });
         _GSwap_shiftImagesToTheRight.set(this, () => {
             var _a;
-            const last = this.containerElem.children[0].lastElementChild;
+            const last = this.containerElem.children[0]
+                .lastElementChild;
+            last.style.opacity = "0";
             this.containerElem.children[0].insertAdjacentHTML("afterbegin", last.outerHTML);
             // this.containerElem.children[0].prepend(last);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
@@ -159,6 +161,7 @@ class GSwap {
             }
         };
         this.goTo = (index) => {
+            var _a, _b;
             if (index >= this.images.length) {
                 throw new Error("Index out of bounds");
             }
@@ -171,11 +174,13 @@ class GSwap {
             if (index > __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
                 for (let i = 0; i <= index - __classPrivateFieldGet(this, _GSwap_currentImg, "f"); i++) {
                     this.next();
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
                 }
                 return;
             }
             for (let i = 0; i <= __classPrivateFieldGet(this, _GSwap_currentImg, "f") - index; i++) {
                 this.prev();
+                __classPrivateFieldSet(this, _GSwap_currentImg, (_b = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _b--, _b), "f");
             }
         };
         this.images = images;

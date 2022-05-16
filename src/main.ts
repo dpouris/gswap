@@ -144,8 +144,10 @@ export default class GSwap implements GallerySwap {
   }
 
   #shiftImagesToTheRight = () => {
-    const last = this.containerElem.children[0].lastElementChild!;
+    const last = this.containerElem.children[0]
+      .lastElementChild! as HTMLImageElement;
 
+    last.style.opacity = "0";
     this.containerElem.children[0].insertAdjacentHTML(
       "afterbegin",
       last.outerHTML
@@ -285,11 +287,13 @@ export default class GSwap implements GallerySwap {
     if (index > this.#currentImg) {
       for (let i = 0; i <= index - this.#currentImg; i++) {
         this.next();
+        this.#currentImg++;
       }
       return;
     }
     for (let i = 0; i <= this.#currentImg - index; i++) {
       this.prev();
+      this.#currentImg--;
     }
   };
 }
