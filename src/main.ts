@@ -169,7 +169,7 @@ export default class GSwap implements GallerySwap {
     first.ontransitionend = () => {
       this.containerElem.children[0].append(first);
       if (this.#currentImg > 0) this.#currentImg--;
-      this.stackImages();
+      // this.stackImages();
     };
   };
 

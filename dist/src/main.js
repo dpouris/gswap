@@ -84,7 +84,7 @@ class GSwap {
                 this.containerElem.children[0].append(first);
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
-                this.stackImages();
+                // this.stackImages();
             };
         });
         _GSwap_findActiveElem.set(this, () => {
