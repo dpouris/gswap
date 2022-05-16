@@ -24,5 +24,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist/src"),
     library: "@dpouris/gswap",
     libraryTarget: "umd",
+    globalObject: "this",
   },
 };
