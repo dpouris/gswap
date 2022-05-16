@@ -20,7 +20,9 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist/src"),
+    library: "@dpouris/gswap",
+    libraryTarget: "umd",
   },
 };

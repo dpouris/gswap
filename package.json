@@ -6,8 +6,7 @@
   "types": "dist/src/main.d.ts",
   "files": [
     "README.md",
-    "dist/",
-    "styles/"
+    "dist/"
   ],
   "directories": {
     "example": "examples"
