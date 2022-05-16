@@ -16,8 +16,8 @@ const ANIMATIONS = {
     fade: [{ opacity: 1 }, { opacity: 0 }],
     fadeBack: [{ opacity: 0 }, { opacity: 1 }],
     slideRight: [
-        { transform: "translate(100%)" },
         { transform: "translate(0%)" },
+        { transform: "translate(100%)" },
     ],
     slideLeft: [
         { transform: "translate(-100%)" },
@@ -75,9 +75,11 @@ class GSwap {
             //   "afterbegin",
             //   last.outerHTML
             // );
-            last.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[0], {
-                duration: this.options.animationDuration || 300,
-            });
+            if (__classPrivateFieldGet(this, _GSwap_animation, "f").length > 0) {
+                last.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[0], {
+                    duration: this.options.animationDuration || 300,
+                });
+            }
             setTimeout(() => {
                 var _a;
                 this.containerElem.children[0].prepend(last);
@@ -96,9 +98,11 @@ class GSwap {
             //   "beforeend",
             //   first.outerHTML
             // );
-            first.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[1], {
-                duration: this.options.animationDuration || 300,
-            });
+            if (__classPrivateFieldGet(this, _GSwap_animation, "f").length > 0) {
+                first.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[1], {
+                    duration: this.options.animationDuration || 300,
+                });
+            }
             setTimeout(() => { }, this.options.animationDuration || 300);
             this.containerElem.children[0].append(first);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
@@ -216,9 +220,11 @@ class GSwap {
                 : this.options.animationDuration;
         this.options.navigation =
             this.options.navigation === undefined ? true : this.options.navigation;
-        __classPrivateFieldSet(this, _GSwap_animation, this.options.animation === "none" || this.options.animation === "fade"
+        __classPrivateFieldSet(this, _GSwap_animation, this.options.animation === undefined || this.options.animation === "fade"
             ? [ANIMATIONS.fade, ANIMATIONS.fadeBack]
-            : [ANIMATIONS.slideRight, ANIMATIONS.slideLeft], "f");
+            : this.options.animation === "slide"
+                ? [ANIMATIONS.slideRight, ANIMATIONS.slideLeft]
+                : [], "f");
         __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_appendElementsOnMainContainer).call(this);
         this.stackImages();
     }

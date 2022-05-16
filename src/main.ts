@@ -5,8 +5,8 @@ const ANIMATIONS = {
   fadeBack: [{ opacity: 0 }, { opacity: 1 }],
 
   slideRight: [
-    { transform: "translate(100%)" },
     { transform: "translate(0%)" },
+    { transform: "translate(100%)" },
   ],
 
   slideLeft: [
@@ -61,9 +61,11 @@ export default class GSwap implements GallerySwap {
       this.options.navigation === undefined ? true : this.options.navigation;
 
     this.#animation =
-      this.options.animation === "none" || this.options.animation === "fade"
+      this.options.animation === undefined || this.options.animation === "fade"
         ? [ANIMATIONS.fade, ANIMATIONS.fadeBack]
-        : [ANIMATIONS.slideRight, ANIMATIONS.slideLeft];
+        : this.options.animation === "slide"
+        ? [ANIMATIONS.slideRight, ANIMATIONS.slideLeft]
+        : [];
 
     this.#appendElementsOnMainContainer();
 
@@ -166,9 +168,12 @@ export default class GSwap implements GallerySwap {
     //   "afterbegin",
     //   last.outerHTML
     // );
-    last.animate(this.#animation[0], {
-      duration: this.options.animationDuration || 300,
-    });
+
+    if (this.#animation.length > 0) {
+      last.animate(this.#animation[0], {
+        duration: this.options.animationDuration || 300,
+      });
+    }
 
     setTimeout(() => {
       this.containerElem.children[0].prepend(last);
@@ -186,9 +191,12 @@ export default class GSwap implements GallerySwap {
     //   "beforeend",
     //   first.outerHTML
     // );
-    first.animate(this.#animation[1], {
-      duration: this.options.animationDuration || 300,
-    });
+
+    if (this.#animation.length > 0) {
+      first.animate(this.#animation[1], {
+        duration: this.options.animationDuration || 300,
+      });
+    }
 
     setTimeout(() => {}, this.options.animationDuration || 300);
     this.containerElem.children[0].append(first);
