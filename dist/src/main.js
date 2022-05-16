@@ -56,7 +56,6 @@ class GSwap {
             return nav;
         });
         _GSwap_shiftImagesToTheRight.set(this, () => {
-            var _a;
             const last = this.containerElem.children[0]
                 .lastElementChild;
             // this.containerElem.children[0].insertAdjacentHTML(
@@ -65,14 +64,14 @@ class GSwap {
             // );
             last.style.opacity = "0";
             last.ontransitionend = () => {
+                var _a;
                 this.containerElem.children[0].prepend(last);
+                if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
                 this.stackImages();
             };
-            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
-                __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
         });
         _GSwap_shiftImagesToTheLeft.set(this, () => {
-            var _a;
             const first = this.containerElem.children[0]
                 .firstElementChild;
             // this.containerElem.children[0].insertAdjacentHTML(
@@ -81,11 +80,12 @@ class GSwap {
             // );
             first.style.opacity = "0";
             first.ontransitionend = () => {
+                var _a;
                 this.containerElem.children[0].append(first);
+                if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
                 this.stackImages();
             };
-            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
-                __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
         });
         _GSwap_findPrevActiveElem.set(this, () => {
             this.containerElem.children[0].childNodes.forEach((image) => {
