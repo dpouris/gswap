@@ -172,13 +172,17 @@ export default class GSwap implements GallerySwap {
     //   "afterbegin",
     //   last.outerHTML
     // );
-    last.animate(ANIMATIONS.fade);
+    last.animate(ANIMATIONS.fade, {
+      duration: this.options.animationDuration || 300,
+    });
 
-    this.containerElem.children[0].prepend(last);
-    if (this.#currentImg < this.images.length) this.#currentImg++;
-    last.style.opacity = "1";
-    this.stackImages();
-    this.#findActiveElem();
+    setTimeout(() => {
+      this.containerElem.children[0].prepend(last);
+      if (this.#currentImg < this.images.length) this.#currentImg++;
+      last.style.opacity = "1";
+      this.stackImages();
+      this.#findActiveElem();
+    }, this.options.animationDuration || 300);
   };
 
   #shiftImagesToTheLeft = () => {
@@ -193,14 +197,13 @@ export default class GSwap implements GallerySwap {
     });
 
     setTimeout(() => {
-      console.log("ended");
+      // console.log("ended");
+      this.containerElem.children[0].append(first);
+      if (this.#currentImg > 0) this.#currentImg--;
+      first.style.opacity = "1";
+      this.stackImages();
+      this.#findActiveElem();
     }, this.options.animationDuration || 300);
-
-    this.containerElem.children[0].append(first);
-    if (this.#currentImg > 0) this.#currentImg--;
-    first.style.opacity = "1";
-    this.stackImages();
-    this.#findActiveElem();
   };
 
   #findActiveElem = () => {

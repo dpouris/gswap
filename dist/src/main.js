@@ -76,23 +76,26 @@ class GSwap {
             return nav;
         });
         _GSwap_shiftImagesToTheRight.set(this, () => {
-            var _a;
             const last = this.containerElem.children[0]
                 .lastElementChild;
             // this.containerElem.children[0].insertAdjacentHTML(
             //   "afterbegin",
             //   last.outerHTML
             // );
-            last.animate(ANIMATIONS.fade);
-            this.containerElem.children[0].prepend(last);
-            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
-                __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
-            last.style.opacity = "1";
-            this.stackImages();
-            __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
+            last.animate(ANIMATIONS.fade, {
+                duration: this.options.animationDuration || 300,
+            });
+            setTimeout(() => {
+                var _a;
+                this.containerElem.children[0].prepend(last);
+                if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
+                last.style.opacity = "1";
+                this.stackImages();
+                __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
+            }, this.options.animationDuration || 300);
         });
         _GSwap_shiftImagesToTheLeft.set(this, () => {
-            var _a;
             const first = this.containerElem.children[0]
                 .firstElementChild;
             // this.containerElem.children[0].insertAdjacentHTML(
@@ -103,14 +106,15 @@ class GSwap {
                 duration: this.options.animationDuration || 300,
             });
             setTimeout(() => {
-                console.log("ended");
+                var _a;
+                // console.log("ended");
+                this.containerElem.children[0].append(first);
+                if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
+                    __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
+                first.style.opacity = "1";
+                this.stackImages();
+                __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
             }, this.options.animationDuration || 300);
-            this.containerElem.children[0].append(first);
-            if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
-                __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
-            first.style.opacity = "1";
-            this.stackImages();
-            __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
         });
         _GSwap_findActiveElem.set(this, () => {
             this.containerElem.children[0].childNodes.forEach((image) => {
