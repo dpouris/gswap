@@ -169,7 +169,7 @@ export default class GSwap implements GallerySwap {
     first.ontransitionend = () => {
       this.containerElem.children[0].append(first);
       if (this.#currentImg > 0) this.#currentImg--;
-      // this.stackImages();
+      this.stackImages();
     };
   };
 
@@ -221,7 +221,7 @@ export default class GSwap implements GallerySwap {
 
   next = () => {
     this.#shiftImagesToTheRight();
-    this.#findActiveElem();
+    // this.#findActiveElem();
 
     if (
       this.#currentImg === this.images.length - 1 &&
@@ -236,7 +236,7 @@ export default class GSwap implements GallerySwap {
 
   prev = () => {
     this.#shiftImagesToTheLeft();
-    this.#findActiveElem();
+    // this.#findActiveElem();
 
     if (this.#currentImg === 0 && this.options.repeat === false) {
       this.#nextNavBtn!.disabled = false;

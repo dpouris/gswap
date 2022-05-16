@@ -84,7 +84,7 @@ class GSwap {
                 this.containerElem.children[0].append(first);
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
-                // this.stackImages();
+                this.stackImages();
             };
         });
         _GSwap_findActiveElem.set(this, () => {
@@ -131,7 +131,7 @@ class GSwap {
         };
         this.next = () => {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheRight, "f").call(this);
-            __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
+            // this.#findActiveElem();
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === this.images.length - 1 &&
                 this.options.repeat === false) {
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = false;
@@ -142,7 +142,7 @@ class GSwap {
         };
         this.prev = () => {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
-            __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
+            // this.#findActiveElem();
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.repeat === false) {
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = false;
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(1)";
