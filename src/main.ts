@@ -21,6 +21,7 @@ export default class GSwap implements GallerySwap {
   #currentImg: number = 0;
   #nextNavBtn?: HTMLButtonElement;
   #backNavBtn?: HTMLButtonElement;
+  #animation!: any[];
 
   constructor(
     containerElem: string | HTMLDivElement,
@@ -59,6 +60,11 @@ export default class GSwap implements GallerySwap {
     this.options.navigation =
       this.options.navigation === undefined ? true : this.options.navigation;
 
+    this.#animation =
+      this.options.animation === "none" || this.options.animation === "fade"
+        ? [ANIMATIONS.fade, ANIMATIONS.fadeBack]
+        : [ANIMATIONS.slideRight, ANIMATIONS.slideLeft];
+
     this.#appendElementsOnMainContainer();
 
     this.stackImages();
@@ -70,10 +76,6 @@ export default class GSwap implements GallerySwap {
     imageContainer.style.height = this.options.imgDimensions!.height + "px";
     imageContainer.style.width = this.options.imgDimensions!.width + "px";
     imageContainer.style.position = "relative";
-
-    // imageContainer.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
-    // imageContainer.style.animation = this.options.animation;
-    // imageContainer.style.animationDuration = this.options.animationDuration;
 
     // Place images inside div container
     const images = this.#createImageElements();
@@ -164,7 +166,7 @@ export default class GSwap implements GallerySwap {
     //   "afterbegin",
     //   last.outerHTML
     // );
-    last.animate(ANIMATIONS.fade, {
+    last.animate(this.#animation[0], {
       duration: this.options.animationDuration || 300,
     });
 
@@ -184,7 +186,7 @@ export default class GSwap implements GallerySwap {
     //   "beforeend",
     //   first.outerHTML
     // );
-    first.animate(ANIMATIONS.fadeBack, {
+    first.animate(this.#animation[1], {
       duration: this.options.animationDuration || 300,
     });
 

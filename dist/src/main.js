@@ -1,16 +1,16 @@
 "use strict";
-var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-};
 var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
     if (kind === "m") throw new TypeError("Private method is not writable");
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _GSwap_instances, _GSwap_currentImg, _GSwap_nextNavBtn, _GSwap_backNavBtn, _GSwap_createImageContainerElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnMainContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findActiveElem;
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _GSwap_instances, _GSwap_currentImg, _GSwap_nextNavBtn, _GSwap_backNavBtn, _GSwap_animation, _GSwap_createImageContainerElement, _GSwap_createImageElements, _GSwap_createNavigation, _GSwap_appendElementsOnMainContainer, _GSwap_shiftImagesToTheRight, _GSwap_shiftImagesToTheLeft, _GSwap_findActiveElem;
 Object.defineProperty(exports, "__esModule", { value: true });
 const ANIMATIONS = {
     fade: [{ opacity: 1 }, { opacity: 0 }],
@@ -30,6 +30,7 @@ class GSwap {
         _GSwap_currentImg.set(this, 0);
         _GSwap_nextNavBtn.set(this, void 0);
         _GSwap_backNavBtn.set(this, void 0);
+        _GSwap_animation.set(this, void 0);
         _GSwap_createNavigation.set(this, () => {
             const nav = document.createElement("nav");
             nav.classList.add("gallery-swap-nav");
@@ -74,7 +75,7 @@ class GSwap {
             //   "afterbegin",
             //   last.outerHTML
             // );
-            last.animate(ANIMATIONS.fade, {
+            last.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[0], {
                 duration: this.options.animationDuration || 300,
             });
             setTimeout(() => {
@@ -95,7 +96,7 @@ class GSwap {
             //   "beforeend",
             //   first.outerHTML
             // );
-            first.animate(ANIMATIONS.fadeBack, {
+            first.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[1], {
                 duration: this.options.animationDuration || 300,
             });
             setTimeout(() => { }, this.options.animationDuration || 300);
@@ -215,20 +216,20 @@ class GSwap {
                 : this.options.animationDuration;
         this.options.navigation =
             this.options.navigation === undefined ? true : this.options.navigation;
+        __classPrivateFieldSet(this, _GSwap_animation, this.options.animation === "none" || this.options.animation === "fade"
+            ? [ANIMATIONS.fade, ANIMATIONS.fadeBack]
+            : [ANIMATIONS.slideRight, ANIMATIONS.slideLeft], "f");
         __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_appendElementsOnMainContainer).call(this);
         this.stackImages();
     }
 }
 exports.default = GSwap;
-_GSwap_currentImg = new WeakMap(), _GSwap_nextNavBtn = new WeakMap(), _GSwap_backNavBtn = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findActiveElem = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_createImageContainerElement = function _GSwap_createImageContainerElement() {
+_GSwap_currentImg = new WeakMap(), _GSwap_nextNavBtn = new WeakMap(), _GSwap_backNavBtn = new WeakMap(), _GSwap_animation = new WeakMap(), _GSwap_createNavigation = new WeakMap(), _GSwap_shiftImagesToTheRight = new WeakMap(), _GSwap_shiftImagesToTheLeft = new WeakMap(), _GSwap_findActiveElem = new WeakMap(), _GSwap_instances = new WeakSet(), _GSwap_createImageContainerElement = function _GSwap_createImageContainerElement() {
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("gallery-swap");
     imageContainer.style.height = this.options.imgDimensions.height + "px";
     imageContainer.style.width = this.options.imgDimensions.width + "px";
     imageContainer.style.position = "relative";
-    // imageContainer.style.transition = `all ${this.options.animationDuration} ${this.options.animation}`;
-    // imageContainer.style.animation = this.options.animation;
-    // imageContainer.style.animationDuration = this.options.animationDuration;
     // Place images inside div container
     const images = __classPrivateFieldGet(this, _GSwap_instances, "m", _GSwap_createImageElements).call(this);
     images.forEach((image) => {
