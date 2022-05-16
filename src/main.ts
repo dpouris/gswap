@@ -178,10 +178,10 @@ export default class GSwap implements GallerySwap {
 
     setTimeout(() => {
       this.containerElem.children[0].prepend(last);
-    }, (this.options.animationDuration || 300) / 1.5);
+    }, this.options.animationDuration || 300);
 
     if (this.#currentImg < this.images.length) this.#currentImg++;
-    // last.style.opacity = "1";
+    last.style.opacity = "1";
     this.stackImages();
     this.#findActiveElem();
   };
