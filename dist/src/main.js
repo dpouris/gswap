@@ -71,10 +71,6 @@ class GSwap {
         _GSwap_shiftImagesToTheRight.set(this, () => {
             const last = this.containerElem.children[0]
                 .lastElementChild;
-            // this.containerElem.children[0].insertAdjacentHTML(
-            //   "afterbegin",
-            //   last.outerHTML
-            // );
             if (__classPrivateFieldGet(this, _GSwap_animation, "f").length > 0) {
                 last.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[0], {
                     duration: this.options.animationDuration || 300,
@@ -94,16 +90,12 @@ class GSwap {
             var _a;
             const first = this.containerElem.children[0]
                 .firstElementChild;
-            // this.containerElem.children[0].insertAdjacentHTML(
-            //   "beforeend",
-            //   first.outerHTML
-            // );
             if (__classPrivateFieldGet(this, _GSwap_animation, "f").length > 0) {
                 first.animate(__classPrivateFieldGet(this, _GSwap_animation, "f")[1], {
                     duration: this.options.animationDuration || 300,
                 });
             }
-            setTimeout(() => { }, this.options.animationDuration || 300);
+            // setTimeout(() => {}, this.options.animationDuration || 300);
             this.containerElem.children[0].append(first);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");

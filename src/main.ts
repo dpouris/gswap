@@ -164,10 +164,6 @@ export default class GSwap implements GallerySwap {
   #shiftImagesToTheRight = () => {
     const last = this.containerElem.children[0]
       .lastElementChild! as HTMLImageElement;
-    // this.containerElem.children[0].insertAdjacentHTML(
-    //   "afterbegin",
-    //   last.outerHTML
-    // );
 
     if (this.#animation.length > 0) {
       last.animate(this.#animation[0], {
@@ -187,10 +183,6 @@ export default class GSwap implements GallerySwap {
   #shiftImagesToTheLeft = () => {
     const first = this.containerElem.children[0]
       .firstElementChild! as HTMLImageElement;
-    // this.containerElem.children[0].insertAdjacentHTML(
-    //   "beforeend",
-    //   first.outerHTML
-    // );
 
     if (this.#animation.length > 0) {
       first.animate(this.#animation[1], {
@@ -198,7 +190,7 @@ export default class GSwap implements GallerySwap {
       });
     }
 
-    setTimeout(() => {}, this.options.animationDuration || 300);
+    // setTimeout(() => {}, this.options.animationDuration || 300);
     this.containerElem.children[0].append(first);
     if (this.#currentImg > 0) this.#currentImg--;
     first.style.opacity = "1";
