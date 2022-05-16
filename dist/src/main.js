@@ -59,23 +59,26 @@ class GSwap {
             var _a;
             const last = this.containerElem.children[0]
                 .lastElementChild;
-            last.style.opacity = "0";
-            this.containerElem.children[0].insertAdjacentHTML("afterbegin", last.outerHTML);
-            // this.containerElem.children[0].prepend(last);
+            // this.containerElem.children[0].insertAdjacentHTML(
+            //   "afterbegin",
+            //   last.outerHTML
+            // );
+            this.containerElem.children[0].prepend(last);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
-            last.remove();
         });
         _GSwap_shiftImagesToTheLeft.set(this, () => {
             var _a;
             const first = this.containerElem.children[0]
                 .firstElementChild;
-            this.containerElem.children[0].insertAdjacentHTML("beforeend", first.outerHTML);
-            // this.containerElem.children[0].prepend(first);
+            // this.containerElem.children[0].insertAdjacentHTML(
+            //   "beforeend",
+            //   first.outerHTML
+            // );
+            this.containerElem.children[0].append(first);
             first.style.opacity = "0";
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
-            first.remove();
         });
         _GSwap_findPrevActiveElem.set(this, () => {
             this.containerElem.children[0].childNodes.forEach((image) => {

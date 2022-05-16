@@ -147,31 +147,30 @@ export default class GSwap implements GallerySwap {
     const last = this.containerElem.children[0]
       .lastElementChild! as HTMLImageElement;
 
-    last.style.opacity = "0";
-    this.containerElem.children[0].insertAdjacentHTML(
-      "afterbegin",
-      last.outerHTML
-    );
-    // this.containerElem.children[0].prepend(last);
+    // this.containerElem.children[0].insertAdjacentHTML(
+    //   "afterbegin",
+    //   last.outerHTML
+    // );
+
+    this.containerElem.children[0].prepend(last);
 
     if (this.#currentImg < this.images.length) this.#currentImg++;
-    last.remove();
   };
 
   #shiftImagesToTheLeft = () => {
     const first = this.containerElem.children[0]
       .firstElementChild! as HTMLImageElement;
 
-    this.containerElem.children[0].insertAdjacentHTML(
-      "beforeend",
-      first.outerHTML
-    );
-    // this.containerElem.children[0].prepend(first);
+    // this.containerElem.children[0].insertAdjacentHTML(
+    //   "beforeend",
+    //   first.outerHTML
+    // );
+
+    this.containerElem.children[0].append(first);
 
     first.style.opacity = "0";
 
     if (this.#currentImg > 0) this.#currentImg--;
-    first.remove();
   };
 
   #findPrevActiveElem = () => {
