@@ -99,10 +99,12 @@ class GSwap {
             //   "beforeend",
             //   first.outerHTML
             // );
-            first.animate(ANIMATIONS.fade);
-            first.onanimationend = () => {
-                console.log("hey");
-            };
+            first.animate(ANIMATIONS.fade, {
+                duration: this.options.animationDuration || 300,
+            });
+            setTimeout(() => {
+                console.log("ended");
+            }, this.options.animationDuration || 300);
             this.containerElem.children[0].append(first);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");

@@ -22,7 +22,6 @@ const ANIMATIONS = {
     { transform: "translate(0%)" },
   ],
 };
-
 export default class GSwap implements GallerySwap {
   containerElem;
   images;
@@ -189,11 +188,14 @@ export default class GSwap implements GallerySwap {
     //   "beforeend",
     //   first.outerHTML
     // );
-    first.animate(ANIMATIONS.fade);
+    first.animate(ANIMATIONS.fade, {
+      duration: this.options.animationDuration || 300,
+    });
 
-    first.onanimationend = () => {
-      console.log("hey");
-    };
+    setTimeout(() => {
+      console.log("ended");
+    }, this.options.animationDuration || 300);
+
     this.containerElem.children[0].append(first);
     if (this.#currentImg > 0) this.#currentImg--;
     first.style.opacity = "1";
