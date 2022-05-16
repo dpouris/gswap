@@ -66,10 +66,10 @@ class GSwap {
             last.ontransitionend = () => {
                 var _a;
                 this.containerElem.children[0].prepend(last);
-                last.style.opacity = "1";
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
                 last.ontransitionend = null;
+                last.style.opacity = "1";
                 this.stackImages();
             };
         });
@@ -84,10 +84,10 @@ class GSwap {
             first.ontransitionend = () => {
                 var _a;
                 this.containerElem.children[0].append(first);
-                first.style.opacity = "1";
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
                 first.ontransitionend = null;
+                first.style.opacity = "1";
                 this.stackImages();
             };
         });
@@ -126,8 +126,6 @@ class GSwap {
             let counter = 0;
             this.containerElem.children[0].childNodes.forEach((image) => {
                 const imgElem = image;
-                imgElem.style.position = "absolute";
-                imgElem.style.opacity = "1";
                 imgElem.style.top = (counter * directionTop).toString() + "px";
                 imgElem.style.left = (counter * directionLeft).toString() + "px";
                 counter++;
@@ -233,12 +231,14 @@ _GSwap_currentImg = new WeakMap(), _GSwap_nextNavBtn = new WeakMap(), _GSwap_bac
         imgElement.src = image;
         imgElement.width = this.options.imgDimensions.width;
         imgElement.height = this.options.imgDimensions.height;
+        imgElement.style.position = "absolute";
+        imgElement.style.opacity = "1";
         imgElement.style.transition = `all ${this.options.animationDuration}ms ease-in-out`;
         // Optional image beautification
-        if (this.options.styled) {
-            imgElement.style.boxShadow = "rgb(0 0 0 / 30%) -6px 4px 6px 0px";
-            imgElement.style.borderRadius = "0.2em";
-        }
+        if (!this.options.styled)
+            return imgElement;
+        imgElement.style.boxShadow = "rgb(0 0 0 / 30%) -6px 4px 6px 0px";
+        imgElement.style.borderRadius = "0.2em";
         return imgElement;
     });
 }, _GSwap_appendElementsOnMainContainer = function _GSwap_appendElementsOnMainContainer() {
