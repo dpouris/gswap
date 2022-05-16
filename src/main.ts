@@ -2,6 +2,7 @@ import type { Options, GallerySwap } from "../types";
 
 const ANIMATIONS = {
   fade: [{ opacity: 1 }, { opacity: 0 }],
+  fadeBack: [{ opacity: 0 }, { opacity: 1 }],
 
   slideRight: [
     { transform: "translate(100%)" },
@@ -183,7 +184,7 @@ export default class GSwap implements GallerySwap {
     //   "beforeend",
     //   first.outerHTML
     // );
-    first.animate(ANIMATIONS.fade, {
+    first.animate(ANIMATIONS.fadeBack, {
       duration: this.options.animationDuration || 300,
     });
 

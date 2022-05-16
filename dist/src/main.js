@@ -14,6 +14,7 @@ var _GSwap_instances, _GSwap_currentImg, _GSwap_nextNavBtn, _GSwap_backNavBtn, _
 Object.defineProperty(exports, "__esModule", { value: true });
 const ANIMATIONS = {
     fade: [{ opacity: 1 }, { opacity: 0 }],
+    fadeBack: [{ opacity: 0 }, { opacity: 1 }],
     slideRight: [
         { transform: "translate(100%)" },
         { transform: "translate(0%)" },
@@ -94,7 +95,7 @@ class GSwap {
             //   "beforeend",
             //   first.outerHTML
             // );
-            first.animate(ANIMATIONS.fade, {
+            first.animate(ANIMATIONS.fadeBack, {
                 duration: this.options.animationDuration || 300,
             });
             setTimeout(() => { }, this.options.animationDuration || 300);
