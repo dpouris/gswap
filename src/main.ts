@@ -1,16 +1,7 @@
 import type { Options, GallerySwap } from "../types";
 
 const ANIMATIONS = {
-  fade: [
-    {
-      opacity: 1,
-      color: "#fff",
-    },
-    {
-      opacity: 0,
-      color: "#000",
-    },
-  ],
+  fade: [{ opacity: 1 }, { opacity: 0 }],
 
   slideRight: [
     { transform: "translate(100%)" },
@@ -178,12 +169,11 @@ export default class GSwap implements GallerySwap {
 
     setTimeout(() => {
       this.containerElem.children[0].prepend(last);
+      if (this.#currentImg < this.images.length) this.#currentImg++;
+      last.style.opacity = "1";
+      this.stackImages();
+      this.#findActiveElem();
     }, this.options.animationDuration || 300);
-
-    if (this.#currentImg < this.images.length) this.#currentImg++;
-    last.style.opacity = "1";
-    this.stackImages();
-    this.#findActiveElem();
   };
 
   #shiftImagesToTheLeft = () => {
@@ -198,13 +188,12 @@ export default class GSwap implements GallerySwap {
     });
 
     setTimeout(() => {
-      // console.log("ended");
+      this.containerElem.children[0].append(first);
+      if (this.#currentImg > 0) this.#currentImg--;
+      first.style.opacity = "1";
+      this.stackImages();
+      this.#findActiveElem();
     }, this.options.animationDuration || 300);
-    this.containerElem.children[0].append(first);
-    if (this.#currentImg > 0) this.#currentImg--;
-    first.style.opacity = "1";
-    this.stackImages();
-    this.#findActiveElem();
   };
 
   #findActiveElem = () => {
