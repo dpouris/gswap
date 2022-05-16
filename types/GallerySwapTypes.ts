@@ -6,6 +6,7 @@ export interface GallerySwap {
   stackImages: () => void;
   next: () => void;
   prev: () => void;
+  goTo: (index: number) => void;
 }
 
 export type Options = {

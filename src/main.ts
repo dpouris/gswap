@@ -50,7 +50,7 @@ export default class GSwap implements GallerySwap {
     this.stackImages();
   }
 
-  #creatImageContainerElement() {
+  #createImageContainerElement() {
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("gallery-swap");
     imageContainer.style.height = this.options.imgDimensions!.height + "px";
@@ -136,7 +136,7 @@ export default class GSwap implements GallerySwap {
 
   #appendElementsOnMainContainer() {
     this.containerElem.innerHTML = "";
-    this.containerElem.appendChild(this.#creatImageContainerElement());
+    this.containerElem.appendChild(this.#createImageContainerElement());
 
     if (this.options.navigation) {
       this.containerElem.appendChild(this.#createNavigation());
