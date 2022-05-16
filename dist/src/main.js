@@ -58,11 +58,8 @@ class GSwap {
         _GSwap_shiftImagesToTheRight.set(this, () => {
             var _a;
             const last = this.containerElem.children[0].lastElementChild;
-            // this.containerElem.children[0].insertAdjacentHTML(
-            //   "afterbegin",
-            //   last.outerHTML
-            // );
-            this.containerElem.children[0].prepend(last);
+            this.containerElem.children[0].insertAdjacentHTML("afterbegin", last.outerHTML);
+            // this.containerElem.children[0].prepend(last);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
             last.remove();
@@ -71,11 +68,8 @@ class GSwap {
             var _a;
             const first = this.containerElem.children[0]
                 .firstElementChild;
-            // this.containerElem.children[0].insertAdjacentHTML(
-            //   "beforeend",
-            //   first.outerHTML
-            // );
-            this.containerElem.children[0].prepend(first);
+            this.containerElem.children[0].insertAdjacentHTML("beforeend", first.outerHTML);
+            // this.containerElem.children[0].prepend(first);
             first.style.opacity = "0";
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
