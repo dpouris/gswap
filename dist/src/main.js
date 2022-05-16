@@ -66,6 +66,7 @@ class GSwap {
             last.ontransitionend = () => {
                 var _a;
                 this.containerElem.children[0].prepend(last);
+                last.style.opacity = "1";
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
                 last.ontransitionend = null;
@@ -83,6 +84,7 @@ class GSwap {
             first.ontransitionend = () => {
                 var _a;
                 this.containerElem.children[0].append(first);
+                first.style.opacity = "1";
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
                 first.ontransitionend = null;
@@ -133,7 +135,7 @@ class GSwap {
         };
         this.next = () => {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheRight, "f").call(this);
-            // this.#findActiveElem();
+            __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === this.images.length - 1 &&
                 this.options.repeat === false) {
                 __classPrivateFieldGet(this, _GSwap_backNavBtn, "f").disabled = false;
@@ -144,7 +146,7 @@ class GSwap {
         };
         this.prev = () => {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
-            // this.#findActiveElem();
+            __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.repeat === false) {
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = false;
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").style.filter = "opacity(1)";
