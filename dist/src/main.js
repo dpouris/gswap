@@ -68,9 +68,9 @@ class GSwap {
                 this.containerElem.children[0].prepend(last);
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
+                last.ontransitionend = null;
+                this.stackImages();
             };
-            last.onanimationend = null;
-            this.stackImages();
         });
         _GSwap_shiftImagesToTheLeft.set(this, () => {
             const first = this.containerElem.children[0]
@@ -85,9 +85,9 @@ class GSwap {
                 this.containerElem.children[0].append(first);
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                     __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
+                first.ontransitionend = null;
+                this.stackImages();
             };
-            first.onanimationend = null;
-            this.stackImages();
         });
         _GSwap_findActiveElem.set(this, () => {
             this.containerElem.children[0].childNodes.forEach((image) => {

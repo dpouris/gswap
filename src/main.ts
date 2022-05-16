@@ -154,9 +154,9 @@ export default class GSwap implements GallerySwap {
     last.ontransitionend = () => {
       this.containerElem.children[0].prepend(last);
       if (this.#currentImg < this.images.length) this.#currentImg++;
+      last.ontransitionend = null;
+      this.stackImages();
     };
-    last.onanimationend = null;
-    this.stackImages();
   };
 
   #shiftImagesToTheLeft = () => {
@@ -170,9 +170,9 @@ export default class GSwap implements GallerySwap {
     first.ontransitionend = () => {
       this.containerElem.children[0].append(first);
       if (this.#currentImg > 0) this.#currentImg--;
+      first.ontransitionend = null;
+      this.stackImages();
     };
-    first.onanimationend = null;
-    this.stackImages();
   };
 
   #findActiveElem = () => {
