@@ -169,12 +169,12 @@ class GSwap {
                 return;
             }
             if (index > __classPrivateFieldGet(this, _GSwap_currentImg, "f")) {
-                for (let i = 0; i < index - __classPrivateFieldGet(this, _GSwap_currentImg, "f"); i++) {
+                for (let i = 0; i <= index - __classPrivateFieldGet(this, _GSwap_currentImg, "f"); i++) {
                     this.next();
                 }
                 return;
             }
-            for (let i = 0; i < __classPrivateFieldGet(this, _GSwap_currentImg, "f") - index; i++) {
+            for (let i = 0; i <= __classPrivateFieldGet(this, _GSwap_currentImg, "f") - index; i++) {
                 this.prev();
             }
         };

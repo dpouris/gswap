@@ -283,12 +283,12 @@ export default class GSwap implements GallerySwap {
     }
 
     if (index > this.#currentImg) {
-      for (let i = 0; i < index - this.#currentImg; i++) {
+      for (let i = 0; i <= index - this.#currentImg; i++) {
         this.next();
       }
       return;
     }
-    for (let i = 0; i < this.#currentImg - index; i++) {
+    for (let i = 0; i <= this.#currentImg - index; i++) {
       this.prev();
     }
   };
