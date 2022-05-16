@@ -1,4 +1,5 @@
 import type { Options, GallerySwap } from "../types";
+const keyframes = require("../styles/keyframes.css");
 
 export default class GSwap implements GallerySwap {
   containerElem;
@@ -157,6 +158,7 @@ export default class GSwap implements GallerySwap {
       last.ontransitionend = null;
       last.style.opacity = "1";
       this.stackImages();
+      this.#findActiveElem();
     };
   };
 
@@ -174,6 +176,7 @@ export default class GSwap implements GallerySwap {
       first.ontransitionend = null;
       first.style.opacity = "1";
       this.stackImages();
+      this.#findActiveElem();
     };
   };
 
@@ -223,7 +226,6 @@ export default class GSwap implements GallerySwap {
 
   next = () => {
     this.#shiftImagesToTheRight();
-    this.#findActiveElem();
 
     if (
       this.#currentImg === this.images.length - 1 &&
@@ -238,7 +240,6 @@ export default class GSwap implements GallerySwap {
 
   prev = () => {
     this.#shiftImagesToTheLeft();
-    this.#findActiveElem();
 
     if (this.#currentImg === 0 && this.options.repeat === false) {
       this.#nextNavBtn!.disabled = false;
