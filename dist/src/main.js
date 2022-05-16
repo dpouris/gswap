@@ -63,7 +63,10 @@ class GSwap {
             //   "afterbegin",
             //   last.outerHTML
             // );
-            this.containerElem.children[0].prepend(last);
+            last.style.opacity = "0";
+            last.ontransitionend = () => {
+                this.containerElem.children[0].prepend(last);
+            };
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
         });
@@ -75,8 +78,10 @@ class GSwap {
             //   "beforeend",
             //   first.outerHTML
             // );
-            this.containerElem.children[0].append(first);
             first.style.opacity = "0";
+            first.ontransitionend = () => {
+                this.containerElem.children[0].append(first);
+            };
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
         });
