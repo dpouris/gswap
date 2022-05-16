@@ -83,7 +83,7 @@ class GSwap {
             //   last.outerHTML
             // );
             last.animate(ANIMATIONS.fade);
-            last.onanimationend = () => {
+            last.ontransitionend = () => {
                 var _a;
                 this.containerElem.children[0].prepend(last);
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
@@ -102,7 +102,7 @@ class GSwap {
             //   first.outerHTML
             // );
             first.animate(ANIMATIONS.fade);
-            first.onanimationend = () => {
+            first.ontransitionend = () => {
                 var _a;
                 this.containerElem.children[0].append(first);
                 if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)

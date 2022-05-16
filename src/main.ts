@@ -174,7 +174,7 @@ export default class GSwap implements GallerySwap {
     //   last.outerHTML
     // );
     last.animate(ANIMATIONS.fade);
-    last.onanimationend = () => {
+    last.ontransitionend = () => {
       this.containerElem.children[0].prepend(last);
       if (this.#currentImg < this.images.length) this.#currentImg++;
       last.ontransitionend = null;
@@ -192,7 +192,7 @@ export default class GSwap implements GallerySwap {
     //   first.outerHTML
     // );
     first.animate(ANIMATIONS.fade);
-    first.onanimationend = () => {
+    first.ontransitionend = () => {
       this.containerElem.children[0].append(first);
       if (this.#currentImg > 0) this.#currentImg--;
       first.ontransitionend = null;
