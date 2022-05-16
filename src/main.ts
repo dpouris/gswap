@@ -3,11 +3,11 @@ import type { Options, GallerySwap } from "../types";
 const ANIMATIONS = {
   fade: [
     {
-      opacity: 0,
+      opacity: 1,
       color: "#fff",
     },
     {
-      opacity: 1,
+      opacity: 0,
       color: "#000",
     },
   ],
@@ -176,10 +176,12 @@ export default class GSwap implements GallerySwap {
       duration: this.options.animationDuration || 300,
     });
 
-    setTimeout(() => {}, this.options.animationDuration || 300);
-    this.containerElem.children[0].prepend(last);
+    setTimeout(() => {
+      this.containerElem.children[0].prepend(last);
+    }, (this.options.animationDuration || 300) / 1.5);
+
     if (this.#currentImg < this.images.length) this.#currentImg++;
-    last.style.opacity = "1";
+    // last.style.opacity = "1";
     this.stackImages();
     this.#findActiveElem();
   };

@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ANIMATIONS = {
     fade: [
         {
-            opacity: 0,
+            opacity: 1,
             color: "#fff",
         },
         {
-            opacity: 1,
+            opacity: 0,
             color: "#000",
         },
     ],
@@ -86,11 +86,12 @@ class GSwap {
             last.animate(ANIMATIONS.fade, {
                 duration: this.options.animationDuration || 300,
             });
-            setTimeout(() => { }, this.options.animationDuration || 300);
-            this.containerElem.children[0].prepend(last);
+            setTimeout(() => {
+                this.containerElem.children[0].prepend(last);
+            }, (this.options.animationDuration || 300) / 1.5);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
-            last.style.opacity = "1";
+            // last.style.opacity = "1";
             this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findActiveElem, "f").call(this);
         });
