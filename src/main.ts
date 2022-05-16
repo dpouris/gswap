@@ -86,7 +86,6 @@ export default class GSwap implements GallerySwap {
       if (!this.options.styled) return imgElement;
       imgElement.style.boxShadow = "rgb(0 0 0 / 30%) -6px 4px 6px 0px";
       imgElement.style.borderRadius = "0.2em";
-
       return imgElement;
     });
   }
@@ -147,17 +146,13 @@ export default class GSwap implements GallerySwap {
   #shiftImagesToTheRight = () => {
     const last = this.containerElem.children[0]
       .lastElementChild! as HTMLImageElement;
-    const first = this.containerElem.children[0]
-      .firstElementChild! as HTMLImageElement;
     // this.containerElem.children[0].insertAdjacentHTML(
     //   "afterbegin",
     //   last.outerHTML
     // );
     last.style.opacity = "0";
-    first.style.opacity = "0";
     last.ontransitionend = () => {
       this.containerElem.children[0].prepend(last);
-      first.style.opacity = "1";
       if (this.#currentImg < this.images.length) this.#currentImg++;
       last.ontransitionend = null;
       last.style.opacity = "1";
