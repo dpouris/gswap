@@ -66,6 +66,7 @@ class GSwap {
             last.style.opacity = "0";
             last.ontransitionend = () => {
                 this.containerElem.children[0].prepend(last);
+                this.stackImages();
             };
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") < this.images.length)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a++, _a), "f");
@@ -81,6 +82,7 @@ class GSwap {
             first.style.opacity = "0";
             first.ontransitionend = () => {
                 this.containerElem.children[0].append(first);
+                this.stackImages();
             };
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") > 0)
                 __classPrivateFieldSet(this, _GSwap_currentImg, (_a = __classPrivateFieldGet(this, _GSwap_currentImg, "f"), _a--, _a), "f");
@@ -147,7 +149,6 @@ class GSwap {
         };
         this.next = () => {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheRight, "f").call(this);
-            this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findNextActiveElement, "f").call(this);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === this.images.length - 1 &&
                 this.options.repeat === false) {
@@ -159,7 +160,6 @@ class GSwap {
         };
         this.prev = () => {
             __classPrivateFieldGet(this, _GSwap_shiftImagesToTheLeft, "f").call(this);
-            this.stackImages();
             __classPrivateFieldGet(this, _GSwap_findPrevActiveElem, "f").call(this);
             if (__classPrivateFieldGet(this, _GSwap_currentImg, "f") === 0 && this.options.repeat === false) {
                 __classPrivateFieldGet(this, _GSwap_nextNavBtn, "f").disabled = false;

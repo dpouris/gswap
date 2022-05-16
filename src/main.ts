@@ -153,6 +153,7 @@ export default class GSwap implements GallerySwap {
     last.style.opacity = "0";
     last.ontransitionend = () => {
       this.containerElem.children[0].prepend(last);
+      this.stackImages();
     };
     if (this.#currentImg < this.images.length) this.#currentImg++;
   };
@@ -167,6 +168,7 @@ export default class GSwap implements GallerySwap {
     first.style.opacity = "0";
     first.ontransitionend = () => {
       this.containerElem.children[0].append(first);
+      this.stackImages();
     };
 
     if (this.#currentImg > 0) this.#currentImg--;
@@ -242,7 +244,6 @@ export default class GSwap implements GallerySwap {
 
   next = () => {
     this.#shiftImagesToTheRight();
-    this.stackImages();
     this.#findNextActiveElement();
 
     if (
@@ -258,7 +259,7 @@ export default class GSwap implements GallerySwap {
 
   prev = () => {
     this.#shiftImagesToTheLeft();
-    this.stackImages();
+
     this.#findPrevActiveElem();
 
     if (this.#currentImg === 0 && this.options.repeat === false) {
